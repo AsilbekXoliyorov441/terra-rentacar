@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="navbar relative z-10 h-[100px] flex items-center">
+      <header className="navbar relative z-40 h-[100px] flex items-center">
         <div className="container mx-auto px-[20px] flex justify-between items-center gap-[20px]">
           <div className="flex items-center gap-[10px]">
             <div className="flex gap-[5px] items-center">
@@ -163,7 +163,7 @@ const Header = () => {
       </header>
 
       <div className={` xl:hidden
-       absolute w-full transition-transform duration-800  ${resNavbar ? "translate-y-[90px]" : "translate-y-[-100%]"}`}>
+       absolute w-full z-20 transition-transform duration-800  ${resNavbar ? "translate-y-[90px]" : "translate-y-[-100%]"}`}>
         <nav className="flex flex-col justify-between p-[30px] bg-gray-600">
           <ul className="flex flex-col items-center gap-[30px] ">
             <li className="pb-[20px]">

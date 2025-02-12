@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer relative pt-[60px] pb-[60px] bg-[url('/footer/footer-main.png')] bg-contain   bg-[600px_60px] bg-no-repeat">
+    <footer className="footer relative pt-[60px] pb-[60px] bg-[url('/footer/footer-main.png')] bg-contain bg-bottom  sm:bg-[300px_60px]  xl:bg-[600px_60px] bg-no-repeat">
       <div className="container relative z-10 flex-col md:flex-row mx-auto gap-[60px] px-[20px] flex">
         <div className="w-[260px] mx-auto text-center md:text-left md:mx-0">
           <a className="w-[130px] inline-block mb-[20px]" href="/">
