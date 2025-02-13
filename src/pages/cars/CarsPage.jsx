@@ -5,6 +5,8 @@ import axios from "axios";
 const CarsPage = () => {
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [brands , setBrands] = useState([])
+  const [model , setModel] = useState([])
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -14,14 +16,36 @@ const CarsPage = () => {
         setCars(response?.data?.data);
       })
       .catch((error) => {
-        console.error("Error kelyapdi qayerdan", error);
+        console.error("Mashinalarni olishda xatolik:", error);
       });
+  
+    axios
+      .get("https://realauto.limsa.uz/api/brands")
+      .then((response) => {
+        setBrands(response?.data?.data);
+      })
+      .catch((error) => {
+        console.error("Boshqa API so‘rovda xatolik:", error);
+      });
+
+      axios
+      .get("https://realauto.limsa.uz/api/brands")
+      .then((response) => {
+        setModel(response?.data?.data)
+      })
+      .catch((error) => {
+        console.error("Model selctda xatolik" , error);
+      })
+
   }, []);
+  
   console.log(cars, "datadan kelayotgan malumot");
 
   return (
-    <div className="container w-full min-h-[680px] border-red m-auto flex pl-[5px] overflow-hidden ">
-      <div className="w-[350px] h-[640px] bg-[#272933] relative top-[30px] pt-[35px] pl-[30px] pr-[30px]">
+    <div className="container w-full h-auto border-red m-auto flex pl-[5px]  my-[50px]">
+      {/* <Link className='text-blue-700' to={`/cars/1`}>CarLink</Link> */}
+
+      <div className="w-[350px] h-auto bg-[#272933] relative top-[30px] pt-[35px] pl-[30px] pr-[30px]  py-[15px] ">
         <div className="w-[200px] h-[50px]">
           <img
             src="public/cars/TerraAvto-CveSQ9CU.png"
@@ -39,31 +63,39 @@ const CarsPage = () => {
 
         <form action="">
           <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
-          <div className="flex items-center text-[#fff] gap-[15px]">
-            <input type="checkbox" />
-            <p className="uppercase">ererebekaaa</p>
-          </div>
+          <div className="flex flex-col gap-[10px]">
+      {cars.map((item) => (
+        <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
+          <input type="checkbox"  />
+          <p className="uppercase">{item.limitperday}</p>
+        </div>
+      ))}
+    </div>
         </form>
 
         <hr className="text-[#d6d1d1] mt-[25px]" />
 
         <form action="">
           <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
-          <div className="flex items-center text-[#fff] gap-[15px]">
-            <input type="checkbox" />
-            <p className="uppercase">BMW-X5</p>
-          </div>
+         {brands.map((item) => (
+             <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
+  <input type="checkbox"  />
+          <p className="uppercase">{item.title}</p>
+             </div>
+         ))
+
+         }
         </form>
 
         <div className="w-full">
-          <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
+          <p className="text-[#fff] mt-[20px] mb-[20px]">Model</p>
           <select
             name=""
             id=""
             className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
           >
-            {cars.map((car) => (
-              <option value="">{car.name}</option>
+            {model.map((car) => (
+              <option value="">{car.title}</option>
             ))}
           </select>
 
@@ -79,7 +111,6 @@ const CarsPage = () => {
       </div>
 
       <div className="w-[1150px] min-h-[680px] flex flex-wrap pl-[15px] pt-[25px] gap-[15px] pb-[25px]">
-        {/* Agar yuklanayotgan bo'lsa */}
         {loading ? (
           <p className="text-white">Yuklanmoqda...</p>
         ) : (

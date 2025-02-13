@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, data, useLocation } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import "./style.scss";
 import axios from "axios";
 
 const Header = () => {
-  const [brands, setBrands] = useState(null);
-  const [resNavbar, setResNavbar] = useState(false);
+   const[brands , setBrands] = useState(null);
+   const[resNavbar , setResNavbar] = useState(false);
 
   const getBrand = async () => {
     try {
@@ -21,8 +21,6 @@ const Header = () => {
   useEffect(() => {
     getBrand();
    } , [])
-   const location = useLocation();
-   console.log(location.state?.data?.title);
 
   console.log(brands);
 
@@ -35,6 +33,7 @@ const Header = () => {
               <button className="w-[30px] h-[30px] cursor-pointer">
                 <img
                   className="w-full"
+
                   src="/header/en-lang.png"
                   alt="en-lang"
                 />
