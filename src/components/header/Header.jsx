@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, data } from "react-router-dom";
+import { Link, NavLink, data, useLocation } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
-
+import { IoClose } from "react-icons/io5";
 import "./style.scss";
 import axios from "axios";
-const Header = () => {
-   const[brands , setBrands] = useState(null);
-   const[resNavbar , setResNavbar] = useState(false);
-  //  const tokenbek = localStorage.setItem("https://realauto.limsa.uz/api/brands")
 
-   const getBrand = async() => {
-    try{
+const Header = () => {
+  const [brands, setBrands] = useState(null);
+  const [resNavbar, setResNavbar] = useState(false);
+
+  const getBrand = async () => {
+    try {
       const res = await axios.get("https://realauto.limsa.uz/api/brands");
       setBrands(res?.data?.data);
-    }catch(error){
+    } catch (error) {
       console.error(error);
     }
-   }
+  };
 
-   useEffect(() => {
+  useEffect(() => {
     getBrand();
    } , [])
-   console.log(data?.title);
+   const location = useLocation();
+   console.log(location.state?.data?.title);
 
-   console.log(brands);
+  console.log(brands);
 
   return (
     <>
@@ -164,9 +165,12 @@ const Header = () => {
         </div>
       </header>
 
-      <div className={` xl:hidden
-       absolute w-full z-20 transition-transform duration-800  ${resNavbar ? "translate-y-[90px]" : "translate-y-[-100%]"}`}>
-        <nav className="flex flex-col justify-between p-[30px] bg-gray-600">
+      <div
+        className={` xl:hidden fixed top-0 left-0 w-full z-50 transition-transform duration-800 h-full bg-gray-500  ${
+          resNavbar ? "translate-x-[0px]" : "-translate-x-[-100%]"
+        }`}
+      >
+        <nav className="flex relative  flex-col justify-center items-center h-full  p-[30px] bg-black">
           <ul className="flex flex-col items-center gap-[30px] ">
             <li className="pb-[20px]">
               <NavLink
@@ -258,6 +262,9 @@ const Header = () => {
           <a className="text-white self-center" href="tel:+998937550412">
             +998(93)755-04-12
           </a>
+          <IoClose
+           onClick={() => setResNavbar(false)}
+          className="absolute right-[15px] top-[30px] cursor-pointer text-[38px] text-red-600" />
         </nav>
       </div>
     </>
