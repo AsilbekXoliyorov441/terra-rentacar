@@ -13,6 +13,8 @@ const CarsPage = () => {
   const handleReset = () => {
     window.location.reload(); // Sahifani yangilash
   };
+  console.log(cars);
+
   
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const CarsPage = () => {
       .catch((error) => {
         console.error("Mashinalarni olishda xatolik:", error);
       });
-  
+     console.log(data);
     axios
       .get("https://realauto.limsa.uz/api/brands")
       .then((response) => {
@@ -55,7 +57,7 @@ const CarsPage = () => {
 
   }, []);
   
-  console.log(cars, "datadan kelayotgan malumot");
+  // console.log(cars, "datadan kelayotgan malumot");
 
   return (
     <div className="container w-full h-auto border-red m-auto flex pl-[5px]  my-[50px]">
@@ -110,8 +112,8 @@ const CarsPage = () => {
             id=""
             className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
           >
-            {model.map((car) => (
-              <option value="">{car.title}</option>
+            {model.map((item) => (
+              <option value="">{item.title}</option>
             ))}
           </select>
 
@@ -130,17 +132,26 @@ const CarsPage = () => {
         {loading ? (
           <p className="text-white">Yuklanmoqda...</p>
         ) : (
-          categories.map((item) => (
+          cars.map((item) => (
             <div
             key={item.id}
-            className="w-[270px] h-[400px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+            className="w-[270px] h-[400px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
           >
             <img
-              src={`https://realauto.limsa.uz/api/uploads/images/${item?.image_src}`}
+              src={`https://realauto.limsa.uz/api/uploads/images/${item?.image?.is_main}`}
               alt="Car"
-              className="w-[90%] h-[220px] m-auto mt-[25px]"
+              className="w-[90%] h-[200px] m-auto mt-[25px]"
             />
-            <p className="text-white text-center mt-4">{item.name_uz}</p>
+            <p className="text-white text-center mt-4">{item.model_id}</p>
+
+            <h2 className="text-white text-[20px]">AED {item.price_in_aed} / <span className="text-gray-500 text-[17px]">{item.price_in_aed_sale}</span></h2>
+
+            <div className="w-full flex justify-center gap-[25px] items-center mt-[15px]">
+              
+              <button className="bg-[#00C600] px-[20px] py-[10px] text-white rounded-[5px]">Whatsapp</button>
+
+              <button className="bg-[#2727E0] px-[20px] py-[10px] text-white rounded-[5px]">Telegram</button>
+            </div>
           </div>
 
       ))
