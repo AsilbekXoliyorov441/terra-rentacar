@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 
@@ -7,8 +7,8 @@ import { IoClose } from "react-icons/io5";
 import "./style.scss";
 import axios from "axios";
 const Header = () => {
-  const [brands, setBrands] = useState(null);
-  const [resNavbar, setResNavbar] = useState(false);
+   const[brands , setBrands] = useState(null);
+   const[resNavbar , setResNavbar] = useState(false);
 
   const getBrand = async () => {
     try {
@@ -21,19 +21,20 @@ const Header = () => {
 
   useEffect(() => {
     getBrand();
-  }, []);
+   } , [])
 
   console.log(brands);
 
   return (
     <>
-      <header className="navbar relative z-40 h-[100px] flex items-center">
+      <header className="navbar relative z-40 h-[100px] flex items-center sm: flex-wrap justify-center">
         <div className="container mx-auto px-[20px] flex justify-between items-center gap-[20px]">
           <div className="flex items-center gap-[10px]">
             <div className="flex gap-[5px] items-center">
               <button className="w-[30px] h-[30px] cursor-pointer">
                 <img
                   className="w-full"
+
                   src="/header/en-lang.png"
                   alt="en-lang"
                 />
