@@ -4,10 +4,16 @@ import axios from "axios";
 
 const CarsPage = () => {
   const [cars, setCars] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [brands , setBrands] = useState([])
   const [model , setModel] = useState([])
+  const [categories , setCategories] = useState([])
+
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const handleReset = () => {
+    window.location.reload(); // Sahifani yangilash
+  };
+  
 
   useEffect(() => {
     axios
@@ -35,6 +41,16 @@ const CarsPage = () => {
       })
       .catch((error) => {
         console.error("Model selctda xatolik" , error);
+      })
+
+      axios
+      .get("https://realauto.limsa.uz/api/categories")
+      .then((response) => {
+        setCategories(response?.data?.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.error("Catigorisda xatolik" , error);
       })
 
   }, []);
@@ -100,7 +116,7 @@ const CarsPage = () => {
           </select>
 
           <div className="w-full mt-[25px] flex gap-[25px] justify-between">
-            <button className="pt-[10px] pb-[10px] pl-[25px] pr-[25px] text-[#fff] border-2 border-white rounded-[4px] cursor-pointer">
+            <button className="pt-[10px] pb-[10px] pl-[25px] pr-[25px] text-[#fff] border-2 border-white rounded-[4px] cursor-pointer" onClick={handleReset}>
               Reset
             </button>
             <button className="pt-[10px] pb-[10px] pl-[35px] pr-[25px] bg-[#009A00] rounded-[4px] text-[#fff] cursor-pointer">
@@ -114,20 +130,23 @@ const CarsPage = () => {
         {loading ? (
           <p className="text-white">Yuklanmoqda...</p>
         ) : (
-          cars.map((car) => (
+          categories.map((item) => (
             <div
-              key={car.brand_id}
-              className="w-[270px] h-[400px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
-            >
-              <img
-                src={`https://realauto.limsa.uz/api/uploads/images/${item?.image_src}`}
-                alt="Car"
-                className="w-[90%] h-[220px] m-auto mt-[25px]"
-              />
-              <p className="text-white text-center mt-4">{car.name}</p>
-            </div>
-          ))
+            key={item.id}
+            className="w-[270px] h-[400px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+          >
+            <img
+              src={`https://realauto.limsa.uz/api/uploads/images/${item?.image_src}`}
+              alt="Car"
+              className="w-[90%] h-[220px] m-auto mt-[25px]"
+            />
+            <p className="text-white text-center mt-4">{item.name_uz}</p>
+          </div>
+
+      ))
         )}
+
+  
       </div>
     </div>
   );
