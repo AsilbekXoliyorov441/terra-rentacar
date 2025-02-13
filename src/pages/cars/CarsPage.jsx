@@ -23,7 +23,7 @@ const CarsPage = () => {
   }, []);
 
   return (
-    <div className="container w-full min-h-screen flex flex-col sm:flex-row items-center justify-center px-5">
+    <div className="container w-full min-h-[680px] border-red m-auto flex pl-[5px] ">
 
       <div className="w-[350px] h-[640px] bg-[#272933] relative top-[30px] pt-[35px] pl-[30px] pr-[30px] ">
         <div className="w-[200px] h-[50px]">
@@ -60,7 +60,7 @@ const CarsPage = () => {
           <select name="" id="" className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]">
             {
               cars.map((car) => (
-                <option value="">{car.id}</option>
+                <option value="">{car.title}</option>
               ))
             }
           </select>
@@ -72,13 +72,13 @@ const CarsPage = () => {
         </div>
       </div>
 
-      <div className="w-full min-h-[680px] flex flex-wrap pl-[15px] pt-[25px] gap-[15px] pb-[25px] sm:flex-col items-center justify-center">
+      <div className="w-[1150px] min-h-[680px] flex flex-wrap pl-[15px] pt-[25px] gap-[15px] pb-[25px]">
         {/* Agar yuklanayotgan bo'lsa */}
         {loading ? (
           <p className="text-white">Yuklanmoqda...</p>
         ) : (
           cars.map((car) => (
-            <div key={car.id} className="w-[320px] h-[400px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000">
+            <div key={car.id} className="w-[270px] h-[400px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000">
               <img src="public/header/logo-header.png" alt="" className="w-[90%] h-[220px] m-auto mt-[25px]" />
               <p className="text-white text-center mt-4">{car.title}</p>
             </div>
