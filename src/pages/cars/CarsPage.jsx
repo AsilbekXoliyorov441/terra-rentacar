@@ -3,18 +3,19 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const CarsPage = () => {
-  const [cars, setCars] = useState([]); // Ma'lumotlar uchun state
-  const [loading, setLoading] = useState(true); // Yuklanish holati
+  const [cars, setCars] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchCars = async () => {
       try {
         const response = await axios.get("https://jsonplaceholder.typicode.com/posts"); 
-        setCars(response.data); // Ma'lumotlarni saqlash
+        // https://realauto.limsa.uz/api/cars
+        setCars(response.data); 
       } catch (error) {
         console.error("Xatolik:", error);
       } finally {
-        setLoading(false); // Yuklanish tugadi
+        setLoading(false); 
       }
     };
 
@@ -22,8 +23,7 @@ const CarsPage = () => {
   }, []);
 
   return (
-    <div className="container w-full min-h-[680px] border-red m-auto flex pl-[5px ">
-      {/* <Link className='text-blue-700' to={`/cars/1`}>CarLink</Link> */}
+    <div className="container w-full min-h-[680px] border-red m-auto flex pl-[5px] ">
 
       <div className="w-[350px] h-[640px] bg-[#272933] relative top-[30px] pt-[35px] pl-[30px] pr-[30px] ">
         <div className="w-[200px] h-[50px]">
@@ -60,7 +60,7 @@ const CarsPage = () => {
           <select name="" id="" className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]">
             {
               cars.map((car) => (
-                <option value="">{car.id}</option>
+                <option value="">{car.title}</option>
               ))
             }
           </select>
