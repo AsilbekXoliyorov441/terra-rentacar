@@ -10,7 +10,6 @@ const Header = () => {
   const [brands, setBrands] = useState(null);
   const [resNavbar, setResNavbar] = useState(false);
 
-
   const getBrand = async () => {
     try {
       const res = await axios.get("https://realauto.limsa.uz/api/brands");
@@ -22,9 +21,9 @@ const Header = () => {
 
   useEffect(() => {
     getBrand();
-   } , [])
-   const location = useLocation();
-   console.log(location.state?.data?.title);
+  }, []);
+  const location = useLocation();
+  console.log(location.state?.data?.title);
 
   console.log(brands);
 
@@ -37,7 +36,6 @@ const Header = () => {
               <button className="w-[30px] h-[30px] cursor-pointer">
                 <img
                   className="w-full"
-
                   src="/header/en-lang.png"
                   alt="en-lang"
                 />
@@ -266,8 +264,9 @@ const Header = () => {
             +998(93)755-04-12
           </a>
           <IoClose
-           onClick={() => setResNavbar(false)}
-          className="absolute right-[15px] top-[30px] cursor-pointer text-[38px] text-red-600" />
+            onClick={() => setResNavbar(false)}
+            className="absolute right-[15px] top-[30px] cursor-pointer text-[38px] text-red-600"
+          />
         </nav>
       </div>
     </>
