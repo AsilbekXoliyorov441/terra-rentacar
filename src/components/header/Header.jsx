@@ -9,7 +9,6 @@ const Header = () => {
   const [brands, setBrands] = useState(null);
   const [resNavbar, setResNavbar] = useState(false);
 
-
   const getBrand = async () => {
     try {
       const res = await axios.get("https://realauto.limsa.uz/api/brands");
