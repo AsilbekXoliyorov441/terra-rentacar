@@ -12,6 +12,9 @@ import { PiPianoKeys } from "react-icons/pi";
 import { TbCar4Wd } from "react-icons/tb";
 import { LuFuel } from "react-icons/lu";
 import { IoCarSportOutline } from "react-icons/io5";
+import { FaWhatsapp } from "react-icons/fa";
+import { SlInfo, SlPhone } from "react-icons/sl";
+import { BiLogoTelegram } from "react-icons/bi";
 
 const SingleCarPage = () => {
   const location = useLocation();
@@ -190,6 +193,14 @@ const SingleCarPage = () => {
            </div>
 
            <hr className="text-[#fff] my-[30px]" />
+
+            <div className="w-full flex justify-center items-center gap-[25px]">
+               
+               <div className="text-[#fff] bg-[#5AEC5A] flex justify-center items-center w-[80px] h-[60px] rounded-[15px] text-[35px]"><FaWhatsapp/></div>
+               <div className="text-[#fff] bg-[#2374F8] flex justify-center items-center w-[80px] h-[60px] rounded-[15px] text-[35px]"><BiLogoTelegram/></div>
+               <div className="text-[#fff] bg-[#FFB630] flex justify-center items-center w-[80px] h-[60px] rounded-[15px] text-[35px]"><SlPhone/></div>
+
+            </div>
 
           </div>
         </div>
