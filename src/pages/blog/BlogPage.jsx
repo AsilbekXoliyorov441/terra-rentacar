@@ -5,8 +5,8 @@ const BlogPage = () => {
   const [blogs, setBlogs] = useState([])
 
   return (
-    <div>
-      <div className='container w-full h-[1050px] mx-auto bg-[#1E1F27]'>
+    <section className='py-4'>
+      <div className='container w-full mx-auto bg-[#1E1F27]'>
        <Link to="/" className='text-[#A5A5A9]'>
          <p className='pl-6 pt-7'>Luxury Cars for Rent in Dubai / Blog</p>
        </Link>
@@ -51,7 +51,7 @@ const BlogPage = () => {
       </div>      
       </div>
      </div>
-    </div>
+    </section>
   )
 }
 
