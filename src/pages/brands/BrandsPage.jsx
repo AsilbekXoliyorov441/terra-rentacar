@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules"; // ✅ To‘g‘ri import
 import "swiper/css";
@@ -70,4 +70,4 @@ const BrandsPage = () => {
   );
 };
 
-export default BrandsPage;
+export default memo(BrandsPage);
