@@ -63,13 +63,12 @@ const CarsPage = () => {
 
   }, []);
   
-  // console.log(cars, "datadan kelayotgan malumot");
 
   return (
-    <div className="container w-full h-auto border-red m-auto flex pl-[5px]  my-[50px]">
+    <div className="container  w-full h-auto border-red m-auto flex pl-[5px]  my-[50px]">
       {/* <Link className='text-blue-700' to={`/cars/1`}>CarLink</Link> */}
 
-      <div className="w-[350px] h-auto bg-[#272933] relative top-[30px] pt-[35px] pl-[30px] pr-[30px]  py-[15px] ">
+      <div className= " absolute translate-x-[-150%] lg:translate-x-0 translate-transform duration-500 lg:relative lg:block w-[350px] h-auto bg-[#272933] top-[30px] pt-[35px] pl-[30px] pr-[30px]  py-[15px] ">
         <div className="w-[200px] h-[50px]">
           <img
             src="public/cars/TerraAvto-CveSQ9CU.png"
@@ -141,23 +140,24 @@ const CarsPage = () => {
           cars.map((item) => (
             <div
             key={item.id}
-            className="w-[310px] h-[420px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+            className="w-[310px] h-[430px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
           >
             <img
-              src={`https://realauto.limsa.uz/api/uploads/images/${item?.images?.[0]}`}
-              alt="Car"
-              className="w-[90%] h-[230px] m-auto mt-[25px]"
+   src={`https://realauto.limsa.uz/api/uploads/images/${item?.car_images[0]?.image?.src}`}              alt="Car"
+              className="w-[90%] max-h-[220px] m-auto mt-[25px]"
             />
 
-            <p className="text-white text-center mt-4">{item?.brand?.title} {
+            <h3 className="text-white text-start text-[20px] mt-4">{item?.brand?.title} {
            
-                <span>{item?.model?.name}</span>
-            }</p>
-
+                <span className="pl-[10px]">{item?.model?.name}</span>
+            }</h3>
+               <hr className="text-[#fff] my-[15px]" />
             <h2 className="text-white text-[20px]">AED {item.price_in_aed} / <span className="text-gray-500 text-[17px]">{item.price_in_aed_sale}</span></h2>
+                  
+            <span className="text-gray-500 pl-[10px]">per day</span>
 
-            <div className="w-full flex justify-center gap-[25px] items-center mt-[15px]">
-              
+            <div className="w-full flex justify-center gap-[25px] items-center mt-[5px]">
+                
               <button className="bg-[#00C600] px-[20px] flex gap-1.5 items-center py-[10px] text-white rounded-[5px]"><FaWhatsapp/> Whatsapp</button>
 
               <button className="bg-[#2727E0] px-[20px] py-[10px] flex gap-1.5 items-center text-white rounded-[5px]"><RiTelegramFill/> Telegram</button>
