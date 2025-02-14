@@ -13,12 +13,12 @@ const HomePage = () => {
       <section id="rental" className="relative pt-[60px] pb-[60px]">
         <img
           className="image-container h-[700px] top-0 absolute left-0"
-          src="/public/home/rental-left.png"
+          src="/home/rental-left.png"
           alt="rental-left"
         />
         <img
           className="image-container h-[700px] top-0 absolute right-0"
-          src="/public/home/rental-right.png"
+          src="/home/rental-right.png"
           alt="rental-left"
         />
         <div className="container relative  z-10 mx-auto px-[20px]">
@@ -112,7 +112,7 @@ const HomePage = () => {
         <div className="h-[300px] md:w-[50%] w-full">
           <img
             className="h-[100%] w-full object-cover"
-            src="/public/home/super-car.webp"
+            src="/home/super-car.webp"
             alt="super-car"
           />
         </div>
