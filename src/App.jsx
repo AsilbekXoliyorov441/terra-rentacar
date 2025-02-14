@@ -10,6 +10,8 @@ import ServicePage from "./pages/services/ServicePage";
 import SingleCarPage from "./pages/single-car/SingleCarPage";
 import SingleBrandPage from "./pages/single-brand/SingleBrandPage";
 import SingleBlogPage from "./pages/single-blog/SingleBlogPage";
+import UslugBuggiesPage from "./pages/uslug-buggies/UslugBuggiesPage";
+import UslugCarPage from "./pages/uslug-car/UslugCarPage";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="cars/:id" element={<SingleCarPage />} />
           <Route path="brands" element={<BrandsPage />} />
           <Route path="brands/:id" element={<SingleBrandPage />} />
+          <Route path="services/uslugbuggies" element={<UslugBuggiesPage />} />
+          <Route path="services/uslugcar" element={<UslugCarPage />} />
           <Route path="services" element={<ServicePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
