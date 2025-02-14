@@ -149,7 +149,10 @@ const CarsPage = () => {
               className="w-[90%] h-[230px] m-auto mt-[25px]"
             />
 
-            <p className="text-white text-center mt-4">{item.year}</p>
+            <p className="text-white text-center mt-4">{item?.brand?.title} {
+           
+                <span>{item?.model?.name}</span>
+            }</p>
 
             <h2 className="text-white text-[20px]">AED {item.price_in_aed} / <span className="text-gray-500 text-[17px]">{item.price_in_aed_sale}</span></h2>
 
