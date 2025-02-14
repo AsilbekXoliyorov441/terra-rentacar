@@ -61,7 +61,8 @@ const CarsPage = () => {
   }, []);
 
   return (
-    <div className="container  w-full h-auto border-red m-auto flex pl-[5px]  my-[50px]">
+    <section>
+      <div className="container  w-full h-auto border-red m-auto flex pl-[5px]  my-[50px]">
       {/* <Link className='text-blue-700' to={`/cars/1`}>CarLink</Link> */}
 
       <div className=" absolute translate-x-[-150%] lg:translate-x-0 translate-transform duration-500 lg:relative lg:block w-[350px] h-auto bg-[#272933] top-[30px] pt-[35px] pl-[30px] pr-[30px]  py-[15px] ">
@@ -179,6 +180,7 @@ const CarsPage = () => {
         )}
       </div>
     </div>
+    </section>
   );
 };
 
