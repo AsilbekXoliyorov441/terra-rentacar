@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, data } from "react-router-dom";
 import axios from "axios";
+import { FaWhatsapp } from "react-icons/fa";
+import { RiTelegramFill } from "react-icons/ri";
 
 const CarsPage = () => {
   const [cars, setCars] = useState([]);
@@ -11,8 +13,12 @@ const CarsPage = () => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const handleReset = () => {
-    window.location.reload(); // Sahifani yangilash
-  };
+    setCars([]);
+    setBrands([]);
+    setModel([]);
+    setCategories([]);
+ };
+ 
   console.log(cars);
 
   
@@ -135,22 +141,23 @@ const CarsPage = () => {
           cars.map((item) => (
             <div
             key={item.id}
-            className="w-[270px] h-[400px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+            className="w-[310px] h-[420px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
           >
             <img
-              src={`https://realauto.limsa.uz/api/uploads/images/${item?.image?.is_main}`}
+              src={`https://realauto.limsa.uz/api/uploads/images/${item?.images?.[0]}`}
               alt="Car"
-              className="w-[90%] h-[200px] m-auto mt-[25px]"
+              className="w-[90%] h-[230px] m-auto mt-[25px]"
             />
-            <p className="text-white text-center mt-4">{item.model_id}</p>
+
+            <p className="text-white text-center mt-4">{item.year}</p>
 
             <h2 className="text-white text-[20px]">AED {item.price_in_aed} / <span className="text-gray-500 text-[17px]">{item.price_in_aed_sale}</span></h2>
 
             <div className="w-full flex justify-center gap-[25px] items-center mt-[15px]">
               
-              <button className="bg-[#00C600] px-[20px] py-[10px] text-white rounded-[5px]">Whatsapp</button>
+              <button className="bg-[#00C600] px-[20px] flex gap-1.5 items-center py-[10px] text-white rounded-[5px]"><FaWhatsapp/> Whatsapp</button>
 
-              <button className="bg-[#2727E0] px-[20px] py-[10px] text-white rounded-[5px]">Telegram</button>
+              <button className="bg-[#2727E0] px-[20px] py-[10px] flex gap-1.5 items-center text-white rounded-[5px]"><RiTelegramFill/> Telegram</button>
             </div>
           </div>
 

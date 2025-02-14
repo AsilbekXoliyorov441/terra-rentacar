@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink} from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import "./style.scss";
 import axios from "axios";
