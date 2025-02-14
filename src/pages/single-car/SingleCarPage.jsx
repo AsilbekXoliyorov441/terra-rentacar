@@ -114,12 +114,17 @@ const SingleCarPage = () => {
             </div>
           </div>
 
-          <div className="w-[500px] bg-amber-300 p-5 rounded-lg">
-            <h3 className="text-2xl font-semibold">Qo‘shimcha ma'lumotlar</h3>
-            <p className="mt-0 text-gray-900">
-              <span></span> <br />
-            350 KM (Every extra km will be charged  AED/km)
-            </p>
+          <div className="w-[550px] p-5 rounded-lg my-[50px] ">
+            
+            <div className="w-full flex flex-wrap justify-between items-center  ">
+              <h2 className="w-[240px] text-[22px] font-[600]">AED {car.price_in_aed_sale} <span>/ {car.price_in_usd_sale}</span> <span className="text-[15px] text-gray-600">Deposit</span> <br />  </h2>
+
+              <h2 className="w-[240px] text-[22px] font-[600]">AED {car.deposit} <br /> <span className="text-[15px] text-gray-600">AED 5000 for credit cards payment</span> </h2>
+
+              <h2 className="w-[240px] text-[22px] font-[600]"><span className="text-[15px] text-gray-600">per day</span> <br /> AED {car.premium_protection}</h2>
+
+            </div>
+          
           </div>
         </div>
       </div>
