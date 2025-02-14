@@ -89,7 +89,7 @@ const CarsPage = () => {
                 className="flex items-center text-[#fff] gap-[15px]"
               >
                 <input type="checkbox" />
-                <p className="uppercase">{item.limitperday}</p>
+                <p className="uppercase">{item.category.name_en}</p>
               </div>
             ))}
           </div>
@@ -117,8 +117,8 @@ const CarsPage = () => {
             id=""
             className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
           >
-            {model.map((item) => (
-              <option value="">{item.title}</option>
+            {cars.map((item) => (
+              <option value="">{item?.model?.name}</option>
             ))}
           </select>
 
