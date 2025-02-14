@@ -68,7 +68,7 @@ const HomePage = () => {
         <img
           className="hidden md:block absolute top-0  right-0"
           width={400}
-          src="/public/home/sport-car-left.png"
+          src="/home/sport-car-left.png"
           alt="sport-car-left"
         />
         <iframe
