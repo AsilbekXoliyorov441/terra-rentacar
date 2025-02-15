@@ -3,10 +3,10 @@ import dc from '../../assets/mm34-DCy6GvLS.png';
 
 const AboutPage = () => {
   return (
-    <section>
+    <section className=''>
       <div className='relative m-auto'>
-        <img src={dc} alt="" className=' w-full h-full absolute opacity-30 top-0' />
-        <div className='container relative text-white text-center sm:text-left py-[25px] sm:py-[50px]'>
+        <img src={dc} alt="" className='lg:flex w-full h-full absolute opacity-30 top-0' />
+        <div className='container m-auto relative text-white text-center sm:text-left py-[25px] sm:py-[50px] px-2'>
           <a href="/" class="text-[#fff9]">Luxury Cars for Rent in Dubai / aboutUs</a>
           <h3 class="text-[26px] sm:text-[32px] font-semibold my-[15px] sm:my-[50px]">ABOUT US</h3>
           <h4 class="text-[22px] sm:text-[30px]">Welcome to Auto Zoom Car Rental Co LLC – Your Partner in Unforgettable Journeys in Dubai!</h4>
