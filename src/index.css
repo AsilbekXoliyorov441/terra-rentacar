@@ -230,7 +230,17 @@ body {
     }
   }
 }
-
+.contacts{
+  background-image: url("../src/assets/contactcover-D0KNkhkW.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  opacity: 1.1;       
+  top: 0;               
+  
+  object-fit: cover;
+}
 
 
 
