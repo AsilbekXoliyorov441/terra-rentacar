@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import LinkPass from "../../components/link-pass/LinkPass";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FaWhatsapp } from "react-icons/fa";
+import { RiTelegramFill } from "react-icons/ri";
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -13,6 +16,7 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 import { useSelector } from "react-redux";
 import { translations } from "../../data";
+import Homecars from "../../components/home-cars/Homecars";
 
 
 const HomePage = () => {
@@ -103,7 +107,12 @@ const HomePage = () => {
         </Swiper>
       </section>
       <section id="brands"></section>
-      <section id="cars">Alyorbek</section>
+      <section id="cars">
+            
+         <Homecars/>
+
+
+      </section>
       <section id="service"></section>
       <section id="about"></section>
       <section id="rental" className="relative pt-[60px] pb-[90px]">

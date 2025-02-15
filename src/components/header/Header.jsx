@@ -28,9 +28,9 @@ const Header = () => {
 
   useEffect(() => {
     getBrand();
-   } , [])
-   const location = useLocation();
-   console.log(location.state?.data?.title);
+  }, []);
+  const location = useLocation();
+  console.log(location.state?.data?.title);
 
   console.log(brands);
 
@@ -319,7 +319,7 @@ const Header = () => {
           </a>
           <IoClose
             onClick={() => setResNavbar(false)}
-            className="absolute right-[20px] sm:right-[32%] lg:right-[52%] top-[30px] cursor-pointer text-[38px] text-red-600"
+            className="absolute right-[15px] top-[30px] cursor-pointer text-[38px] text-red-600"
           />
         </nav>
       </div>
