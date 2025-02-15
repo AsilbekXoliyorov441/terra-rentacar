@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, data, useNavigate } from "react-router-dom";
+import { Link, data, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiTelegramFill } from "react-icons/ri";
@@ -15,7 +15,12 @@ const CarsPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
+  const { pathname } = useLocation();
+
+
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     axios
       .get("https://realauto.limsa.uz/api/cars")
       .then((response) => {
@@ -44,7 +49,7 @@ const CarsPage = () => {
       .catch((error) => {
         console.error("Kategoriyalarni olishda xatolik:", error);
       });
-  }, []);
+  }, [[pathname]]);
 
   const handleBrandChange = (brandId) => {
     setSelectedBrands((prev) =>

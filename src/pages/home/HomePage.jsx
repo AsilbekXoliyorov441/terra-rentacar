@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LinkPass from "../../components/link-pass/LinkPass";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaWhatsapp } from "react-icons/fa";
-import { RiTelegramFill } from "react-icons/ri";
 
 
 // Import Swiper styles
