@@ -7,7 +7,8 @@ export const translations = {
       "Best sports car & supercar rental Emirates, Exclusive offers on luxury car rental Emirates Cheap price",
     heroLink: "RENT A CAR EMIRATES CATALOG",
     brand: "BRANDS",
-       bradcumb1: "Luxury Cars for Rent in Dubai",
+    seeLink: "SEE ALL",
+    bradcumb1: "Luxury Cars for Rent in Dubai",
     bradcumb2: "Service",
     service: "SERVICE",
     service1Title: "Ride a buggy in Dubai and have fun",
@@ -64,7 +65,10 @@ export const translations = {
 
     followUs: "FOLLOW US ON INSTAGRAM",
     location: "LOCATION",
-    city: "Elite 3 Sports City, Dubai 26W8 24J, United Arab Emirates",
+    city1:"Elite 3 Sports City," ,
+    city2:"Dubai 26W8 24J",
+    city3:"United Arab Emirates",
+    city: "Terra Car Rental United Arab Emirates",
     workingHours: "Working hours: 24/7",
     termsAndConditions: "Terms and Conditions",
     getBestOffer: "GET BEST OFFER",
@@ -144,7 +148,8 @@ export const translations = {
 
     followUs: "ПОДПИШИТЕСЬ НА НАС В INSTAGRAM",
     location: "МЕСТОПОЛОЖЕНИЕ",
-    city: "Elite 3 Sports City, Dubai 26W8 24J, United Arab Emirates",
+    city: "Terra Car Rental Объединенные Арабские Эмираты",
+
     workingHours: "Часы работы: круглосуточно",
     termsAndConditions: "Условия и положения",
     getBestOffer: "ПОЛУЧИТЬ ЛУЧШЕЕ ПРЕДЛОЖЕНИЕ",
