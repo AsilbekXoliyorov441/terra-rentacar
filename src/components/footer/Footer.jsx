@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { translations } from "../../data";
 
 const Footer = () => {
+    const language = useSelector((state) => state?.language.language);
+
   return (
     <footer className="footer relative pt-[60px] pb-[60px] bg-[url('/footer/footer-main.png')] bg-contain bg-bottom  sm:bg-[300px_60px]  xl:bg-[600px_60px] bg-no-repeat">
       <div className="container relative z-10 flex-col md:flex-row mx-auto gap-[60px] px-[20px] flex">
@@ -9,11 +13,12 @@ const Footer = () => {
             <img className="w-full" src="/footer/logo.png" alt="logo" />
           </a>
           <h1 className="text-white text-[38px] leading-[40px] mb-[20px] font-bold">
-            LUXURY CAR RENTAL IN EMIRATES
+            {translations[language]?.luxuryCarRental ||
+              translations?.en?.luxuryCarRental}
           </h1>
           <p className="text-white">
-            Rent sports and luxury cars directly without intermediaries. Rent a
-            car in Dubai with Auto Zoom Car Rental - safety and driving pleasure
+            {translations[language]?.sportdesc ||
+              translations?.en?.sportdesc}
           </p>
           <a
             className="border-[2px] transition-colors duration-300 border-solid border-white px-[40px] py-[30px] inline-block mt-[20px] rounded-[12px] text-white hover:bg-red-500 hover:border-red-500 "
