@@ -1,9 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 
 const SingleBlogPage = () => {
   return (
     <div>
+      <section className=''>
+        <h1>adadsdskodladkamdakdas</h1>
+      </section>
     </div>
   );
 }
