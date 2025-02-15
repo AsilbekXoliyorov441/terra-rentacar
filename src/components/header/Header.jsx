@@ -9,7 +9,6 @@ import axios from "axios";
 const Header = () => {
   const [brands, setBrands] = useState(null);
   const [resNavbar, setResNavbar] = useState(false);
-
   const getBrand = async () => {
     try {
       const res = await axios.get("https://realauto.limsa.uz/api/brands");
@@ -69,7 +68,7 @@ const Header = () => {
               <li className="pb-[20px]">
                 <NavLink
                   className={
-                    "transition-transform duration-300 group text-white text-[18px] uppercase"
+                    "transition-transform duration-300 group text-white text-[24px] uppercase"
                   }
                   to={"cars"}
                 >
@@ -80,7 +79,7 @@ const Header = () => {
               <li className="relative pb-[20px]  group">
                 <NavLink
                   className={
-                    "transition-transform duration-300  text-white text-[18px] uppercase"
+                    "transition-transform duration-300  text-white text-[24px] uppercase"
                   }
                   to={"brands"}
                 >
@@ -111,7 +110,7 @@ const Header = () => {
               <li className="pb-[20px]">
                 <NavLink
                   className={
-                    "transition-transform duration-300 group text-white text-[18px] uppercase"
+                    "transition-transform duration-300 group text-white text-[24px] uppercase"
                   }
                   to={"services"}
                 >
@@ -122,7 +121,7 @@ const Header = () => {
               <li className="pb-[20px]">
                 <NavLink
                   className={
-                    "transition-transform duration-300 group text-white text-[18px] uppercase"
+                    "transition-transform duration-300 group text-white text-[24px] uppercase"
                   }
                   to={"about"}
                 >
@@ -133,7 +132,7 @@ const Header = () => {
               <li className="pb-[20px]">
                 <NavLink
                   className={
-                    "transition-transform duration-300 group text-white text-[18px] uppercase"
+                    "transition-transform duration-300 group text-white text-[24px] uppercase"
                   }
                   to={"contact"}
                 >
@@ -144,7 +143,7 @@ const Header = () => {
               <li className="pb-[20px]">
                 <NavLink
                   className={
-                    "transition-transform duration-300 group text-white text-[18px] uppercase"
+                    "transition-transform duration-300 group text-white text-[24px] uppercase"
                   }
                   to={"blog"}
                 >
@@ -168,15 +167,17 @@ const Header = () => {
 
       <div
         className={` xl:hidden fixed top-0 left-0 w-full z-50 transition-transform duration-800 h-full bg-gray-500  ${
-          resNavbar ? "translate-x-[0px]" : "-translate-x-[-100%]"
+          resNavbar
+            ? "sm:translate-x-[30%] lg:translate-x-[50%]"
+            : "-translate-x-[-100%]"
         }`}
       >
-        <nav className="flex relative  flex-col justify-center items-center h-full  p-[30px] bg-black">
-          <ul className="flex flex-col items-center gap-[30px] ">
+        <nav className="flex relative  flex-col justify-center items-left h-full  p-[30px] bg-black">
+          <ul className="flex flex-col items-left gap-[30px] ">
             <li className="pb-[20px]">
               <NavLink
                 className={
-                  "transition-transform duration-300 group text-white text-[18px] uppercase"
+                  "transition-transform inline-block  duration-300 group text-white text-[24px] uppercase"
                 }
                 to={"cars"}
               >
@@ -187,7 +188,7 @@ const Header = () => {
             <li className="relative pb-[20px]  group">
               <NavLink
                 className={
-                  "transition-transform duration-300  text-white text-[18px] uppercase"
+                  "transition-transform inline-block duration-300  text-white text-[24px] uppercase"
                 }
                 to={"brands"}
               >
@@ -195,7 +196,7 @@ const Header = () => {
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
 
-              <ul className="absolute hidden transition-transform duration-300 rounded-[12px]  group-hover:grid grid-cols-2 sm:grid-cols-3 p-[20px] gap-[30px] w-[330px] sm:w-[600px]  top-[40px] left-[-130px] sm:left-[-257px] bg-gray-700">
+              <ul className="absolute hidden transition-transform duration-300 rounded-[12px]  group-hover:grid grid-cols-2 lg:grid-cols-3 p-[20px] gap-[30px] w-[330px] lg:w-[500px]  top-[40px] left-[-20px]  bg-gray-700">
                 {brands?.map((brand) => (
                   <li key={brand?.id}>
                     <Link
@@ -218,7 +219,7 @@ const Header = () => {
             <li className="pb-[20px]">
               <NavLink
                 className={
-                  "transition-transform duration-300 group text-white text-[18px] uppercase"
+                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
                 }
                 to={"services"}
               >
@@ -229,7 +230,7 @@ const Header = () => {
             <li className="pb-[20px]">
               <NavLink
                 className={
-                  "transition-transform duration-300 group text-white text-[18px] uppercase"
+                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
                 }
                 to={"about"}
               >
@@ -240,7 +241,7 @@ const Header = () => {
             <li className="pb-[20px]">
               <NavLink
                 className={
-                  "transition-transform duration-300 group text-white text-[18px] uppercase"
+                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
                 }
                 to={"contact"}
               >
@@ -251,7 +252,7 @@ const Header = () => {
             <li className="pb-[20px]">
               <NavLink
                 className={
-                  "transition-transform duration-300 group text-white text-[18px] uppercase"
+                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
                 }
                 to={"blog"}
               >
@@ -260,7 +261,10 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-          <a className="text-white self-center" href="tel:+998937550412">
+          <a
+            className="text-white  self-left text-[24px]"
+            href="tel:+998937550412"
+          >
             +998(93)755-04-12
           </a>
           <IoClose

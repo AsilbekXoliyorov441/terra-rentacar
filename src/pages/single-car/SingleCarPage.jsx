@@ -32,17 +32,16 @@ const SingleCarPage = () => {
     details: "",
   });
 
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const botToken = "7815564274:AAHyAdtGAmgvVSFUXUblgLPF4jhJLmY_7rI";
     const chatId = "6992354984";
-  
+
     // Telegramga yuboriladigan matn
     const text = `
   📝 <b>Yangi buyurtma!</b> 
@@ -64,10 +63,10 @@ const SingleCarPage = () => {
   💳 <b>Depozit:</b> AED ${car.deposit}
   📍 <b>Joylashuv:</b> ${car?.city?.name} Cars
     `;
-  
+
     const messageUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     const photoUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`;
-  
+
     try {
       // Avval matnli xabarni yuboramiz
       const response = await fetch(messageUrl, {
@@ -79,11 +78,11 @@ const SingleCarPage = () => {
           parse_mode: "HTML",
         }),
       });
-  
+
       if (!response.ok) {
         throw new Error("Xabar yuborishda xatolik yuz berdi.");
       }
-  
+
       // Mashina rasmlarini yuborish
       if (car.images && car.images.length > 0) {
         for (const img of car.images) {
@@ -97,7 +96,7 @@ const SingleCarPage = () => {
           });
         }
       }
-  
+
       setModalOpen(true);
       setFormData({ name: "", phone: "", period: "", details: "" });
     } catch (error) {
@@ -105,8 +104,6 @@ const SingleCarPage = () => {
       alert("Tarmoq xatosi yuz berdi.");
     }
   };
-  
-
 
   if (!car)
     return (
@@ -123,7 +120,7 @@ const SingleCarPage = () => {
       <div className="container w-[1200px] min-h-[650px] mx-auto p-5 text-white my-[50px]">
         <div className="w-full h-auto flex justify-between">
           {/* Chap tomon - Slayder */}
-          <div className="w-[550px]">
+          <div className="w-[550px] py-[50px]">
             <h1 className="text-[45px] font-bold uppercase my-[10px]">
               {car.brand.title} {car.model.name} ({car.color})
             </h1>
@@ -306,72 +303,100 @@ const SingleCarPage = () => {
                 {car.brand.title} {car.model.name} ({car.color})
               </p>
 
-              <form onSubmit={handleSubmit} className="w-full my-6 flex flex-col justify-center gap-5">
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
-          required
-        />
-        <input
-          type="number"
-          name="phone"
-          placeholder="Phone"
-          value={formData.phone}
-          onChange={handleChange}
-          className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
-          required
-          min={0}
-        />
-        <input
-          type="number"
-          name="period"
-          placeholder="Period"
-          value={formData.period}
-          onChange={handleChange}
-          className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
-          required
-          min={0}
-        />
-        <input
-          type="text"
-          name="details"
-          placeholder="Details"
-          value={formData.details}
-          onChange={handleChange}
-          className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
-        />
-        <button type="submit" className="w-36 h-12 bg-orange-600 text-white text-lg rounded-md">
-          Submit
-        </button>
-      </form>
-           
-        
+              <form
+                onSubmit={handleSubmit}
+                className="w-full my-6 flex flex-col justify-center gap-5"
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
+                  required
+                />
+                <input
+                  type="number"
+                  name="phone"
+                  placeholder="Phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
+                  required
+                  min={0}
+                />
+                <input
+                  type="number"
+                  name="period"
+                  placeholder="Period"
+                  value={formData.period}
+                  onChange={handleChange}
+                  className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
+                  required
+                  min={0}
+                />
+                <input
+                  type="text"
+                  name="details"
+                  placeholder="Details"
+                  value={formData.details}
+                  onChange={handleChange}
+                  className="w-full h-14 bg-white text-black p-3 focus:outline-none border border-gray-300"
+                />
+                <button
+                  type="submit"
+                  className="w-36 h-12 bg-orange-600 text-white text-lg rounded-md"
+                >
+                  Submit
+                </button>
+              </form>
 
-      {/* MODAL */}
-      {modalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-lg z-10">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <p className="text-xl font-semibold text-gray-800">✅ Xabar muvaffaqiyatli yuborildi!</p>
-            <button onClick={() => setModalOpen(false)} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md">
-              OK
-            </button>
-          </div>
-        </div>
-      )}
-
+              {/* MODAL */}
+              {modalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black/30 backdrop-blur-lg z-10">
+                  <div className="bg-white p-6 rounded-lg shadow-lg">
+                    <p className="text-xl font-semibold text-gray-800">
+                      ✅ Xabar muvaffaqiyatli yuborildi!
+                    </p>
+                    <button
+                      onClick={() => setModalOpen(false)}
+                      className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md"
+                    >
+                      OK
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="w-auto text-start mt-[40px] text-gray-600 text-[14px]">
-            <p>The price doesn't include additional 5% VAT. <br />
+              <p>
+                The price doesn't include additional 5% VAT. <br />
+                There is a 3% transaction fee when paying by credit/debit card.{" "}
+                <br />
+                There is a 7% transaction fee when paying with American Express.
+              </p>
+            </div>
+          </div>
+        </div>
 
-There is a 3% transaction fee when paying by credit/debit card. <br /> 
+        <div className="w-full gap-[35px] ">
+          <h1 className="text-[32px] font-[600] my-[25px]">SIMILAR OFFERS</h1>
+          <div className="w-full flex justify-start gap-[20px] ">
+            {images.map((item) => (
+              <div key={item.id} className="w-[310px] h-[410px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000">
+                {/* Bu yerga ma'lumotlar qo'shish mumkin */}
+                <img src={`https://realauto.limsa.uz/api/uploads/images/${car?.car_images[0]?.image?.src}`} alt="Car" className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105" />
+                <h3 className="text-white text-start text-[20px] mt-4">{car?.brand?.title} <span className="pl-[10px]">{car?.model?.name}</span></h3>
+                   
+                   <hr className="text-white my-[25px]" />
 
-There is a 7% transaction fee when paying with American Express.</p>
-           </div>
+                   <h2 className="text-white text-[20px]">AED {car.price_in_aed} / <span className="text-gray-500 text-[17px]">{car.price_in_aed_sale}</span></h2>
+        <span className="text-gray-500 pl-[10px]">per day</span>
+
+              </div>
+            ))}
           </div>
         </div>
       </div>
