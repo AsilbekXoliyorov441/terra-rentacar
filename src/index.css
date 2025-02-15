@@ -147,3 +147,94 @@ body {
     left: 30px;
   }
 }
+
+
+
+@keyframes bounceXLeft {
+  0%, 100% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateX(10px); /* Ichkariga kirish */
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes bounceXRight {
+  0%, 100% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateX(-10px); /* Ichkariga kirish */
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.bounce-x-left {
+  display: inline-block;
+  animation: bounceXLeft 1s infinite alternate;
+}
+
+.bounce-x-right {
+  display: inline-block;
+  animation: bounceXRight 1s infinite alternate;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-gradient {
+  display: block;
+  height: 1px;
+  background: linear-gradient( #f06, #ff8c00);
+  background-size: 300% 100%;
+  animation: gradientMove 5s ease-in-out infinite alternate;
+}
+
+.faq{
+  background-image: url("../public/home/faq-bg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.748);
+}
+
+.faq-item{
+    background: linear-gradient(
+    to right,
+    rgb(17, 32, 53) 0%,
+    #0e0d0d 20%,
+    #111219 50%,
+    #1b1616 80%,
+    rgb(17, 32, 53) 100%
+  );
+  background-size: 300% 100%;
+  animation: gradientMove 8s linear infinite;
+  
+  @keyframes gradientMove {
+    0% {
+      background-position: 200% 50%;
+    }
+    50% {
+      background-position: 50% 50%;
+    }
+    100% {
+      background-position: 200% 50%;
+    }
+  }
+}
+
+
+
+
+
+
+
+

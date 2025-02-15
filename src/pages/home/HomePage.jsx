@@ -12,10 +12,43 @@ import "swiper/css/pagination";
 // import required modules
 import { Navigation } from "swiper/modules";
 
+const data = [
+  {
+    id: 1,
+    question: "What is the minimum age requirement to rent a car in Dubai?",
+    answer:
+      "Drivers under 25 must have a license for a minimum of three years. The same applies for the person(s) whose name(s) is/are mentioned as additional driver.",
+  },
+  {
+    id: 2,
+    question: "What do you need for a luxury car rental in Dubai ?",
+    answer:
+      "Drivers shall be required to have a valid driver's license and Passport copy.",
+  },
+  {
+    id: 3,
+    question: "How much is the Insurance limit on luxury car rental Dubai?",
+    answer:
+      "Includes an overall Motor Vehicle Insurance. 3000-5000 AED for Excess Luxury Cars. 7000-10000 AED for Sports Cars.",
+  },
+  {
+    id: 4,
+    question: "Can anyone else drive the car i rent?",
+    answer:
+      "The contract prescribes two drivers, but at the time of filling out the contract, you must provide a driver's license and passport.",
+  },
+];
+
+
 const HomePage = () => {
   const [activeIndex, setActiveIndex] = useState(1);
+    const [openIndex, setOpenIndex] = useState(null);
+
+    const toggleAccordion = (index) => {
+      setOpenIndex(openIndex === index ? null : index);
+    };
   return (
-    <main className="bg-gray-800">
+    <>
       <section id="hero" className="pt-[90px] pb-[90px]">
         <div className="container px-[20px] mb-[40px] mx-auto">
           <h1 className="text-center font-[500] text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[40px] font-serif">
@@ -210,10 +243,96 @@ const HomePage = () => {
           <LinkPass title={"SEE ALL"} />
         </div>
       </section>
-      <section id="faq"></section>
+      <section id="faq" className="pt-[90px] pb-[90px] relative  faq bg-cover bg-center">
+        <div className="absolute top-0 bg-gray-950 opacity-[0.7] w-full h-full"></div>
+        <div className="container relative mx-auto px-[20px]">
+          <h1 className="text-center text-white text-[22px] sm:text-[26px] md:text-[28px] lg:text-[32px] font-[500]">
+            FAQ
+          </h1>
+          <div>
+            {data?.map((item, index) => (
+              <div
+                key={item.id || index}
+                className="h-[90px] max-w-[900px] w-full mx-auto"
+              >
+                {/* Header */}
+                <div
+                  onClick={() => toggleAccordion(index)}
+                  className="flex gap-[5px] pb-[20px] pt-[20px] items-center mx-auto justify-center cursor-pointer"
+                >
+                  {/* Left Icon */}
+                  <span
+                    className={`${
+                      openIndex === index ? "animate-bounce" : "bounce-x-left"
+                    } mr-[20px]`}
+                  >
+                    <svg
+                      width="22px"
+                      className={`${
+                        openIndex === index ? "rotate-270" : "rotate-180"
+                      } transition-transform duration-300 fill-white`}
+                      viewBox="0 0 64 64"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="Layer_67" data-name="Layer 67">
+                        <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                        <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                      </g>
+                    </svg>
+                  </span>
+
+                  {/* Question Text */}
+                  <button className="text-white text-center text-[16px] sm:text-[18px] cursor-pointer lg:text-[24px]">
+                    {item.question}
+                  </button>
+
+                  {/* Right Icon */}
+                  <span
+                    className={`${
+                      openIndex === index ? "animate-bounce" : "bounce-x-right"
+                    } ml-[20px]`}
+                  >
+                    <svg
+                      width="22px"
+                      className={`${
+                        openIndex === index ? "-rotate-90" : "rotate-0"
+                      } transition-transform duration-300 fill-white`}
+                      viewBox="0 0 64 64"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g id="Layer_67" data-name="Layer 67">
+                        <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                        <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                      </g>
+                    </svg>
+                  </span>
+                </div>
+
+                {/* Animated Gradient Border */}
+                <span
+                  className={`animated-gradient block h-[2px] bg-gray-500 transition-all duration-500 mx-auto ${
+                    openIndex === index ? "w-0" : "w-full"
+                  }`}
+                ></span>
+
+                {/* Answer (Content) */}
+                <div
+                  className={`faq-item rounded-[8px] transform transition-all relative z-20 duration-300 bg-gray-700 text-white text-[18px] p-[10px] ${
+                    openIndex === index
+                      ? "opacity-100 translate-y-[10px] h-auto"
+                      : "opacity-0 translate-y-[-20px] h-0 overflow-hidden"
+                  }`}
+                >
+                  <p>{item.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section id="follow"></section>
       <section id="locations"></section>
-    </main>
+    </>
   );
 };
 
