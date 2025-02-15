@@ -11,62 +11,39 @@ import "swiper/css/pagination";
 
 // import required modules
 import { Navigation } from "swiper/modules";
-
-const data = [
-  {
-    id: 1,
-    question: "What is the minimum age requirement to rent a car in Dubai?",
-    answer:
-      "Drivers under 25 must have a license for a minimum of three years. The same applies for the person(s) whose name(s) is/are mentioned as additional driver.",
-  },
-  {
-    id: 2,
-    question: "What do you need for a luxury car rental in Dubai ?",
-    answer:
-      "Drivers shall be required to have a valid driver's license and Passport copy.",
-  },
-  {
-    id: 3,
-    question: "How much is the Insurance limit on luxury car rental Dubai?",
-    answer:
-      "Includes an overall Motor Vehicle Insurance. 3000-5000 AED for Excess Luxury Cars. 7000-10000 AED for Sports Cars.",
-  },
-  {
-    id: 4,
-    question: "Can anyone else drive the car i rent?",
-    answer:
-      "The contract prescribes two drivers, but at the time of filling out the contract, you must provide a driver's license and passport.",
-  },
-];
+import { useSelector } from "react-redux";
+import { translations } from "../../data";
 
 
 const HomePage = () => {
-  const [activeIndex, setActiveIndex] = useState(1);
-    const [openIndex, setOpenIndex] = useState(null);
+  const language = useSelector((state) => state.language.language);
 
-    const toggleAccordion = (index) => {
-      setOpenIndex(openIndex === index ? null : index);
-    };
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   return (
     <>
       <section id="hero" className="pt-[90px] pb-[90px]">
         <div className="container px-[20px] mb-[40px] mx-auto">
           <h1 className="text-center font-[500] text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[40px] font-serif">
-            TOP LUXURY CAR RENTAL EMIRATES
+            {translations[language]?.heroTitle || translations?.en?.heroTitle}
           </h1>
           <h1 className="text-center font-[500] text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[40px] font-serif">
             №1
           </h1>
           <p className="text-white text-center text-[16px] lg:text-[18px] mt-[15px]">
-            Best sports car & supercar rental Emirates, Exclusive offers on
-            luxury car rental Emirates Cheap price
+            {translations[language]?.heroSubtitle ||
+              translations?.en?.heroSubtitle}
           </p>
           <Link
             className={`group w-full mx-auto md:mx-0 text-[14px] sm:text-[16px] md:text-[18px]  hover:text-red-600 transition-colors duration-300 flex items-center justify-center gap-[10px] font-[500] mt-[30px] text-white`}
             to="/cars"
           >
             <span className="group-hover:-translate-x-[20px] transition-transform duration-300">
-              RENT A CAR EMIRATES CATALOG
+              {translations[language]?.heroLink || translations.en.heroLink}
             </span>
             <svg
               data-v-727266f5
@@ -129,7 +106,7 @@ const HomePage = () => {
       <section id="cars">Alyorbek</section>
       <section id="service"></section>
       <section id="about"></section>
-      <section id="rental" className="relative pt-[60px] pb-[60px]">
+      <section id="rental" className="relative pt-[60px] pb-[90px]">
         <img
           className="image-container h-[700px] top-0 absolute left-0"
           src="/home/rental-left.png"
@@ -142,47 +119,26 @@ const HomePage = () => {
         />
         <div className="container relative  z-10 mx-auto px-[20px]">
           <h1 className="text-[24px] sm:text-[28px]  md:text-[36px] lg:text-[42px] text-white font-[500] mb-[5px]">
-            LUXURY CAR RENTAL IN EMIRATES
+            {translations[language]?.luxuryCarRental ||
+              translations.en.luxuryCarRental}
           </h1>
           <p className="text-white text-[14px] md:text-[16px] leading-[30px] md:leading-[35px]">
-            Are you ready to feel the adrenaline rush and unleash your inner
-            speed demon? Look no further than Terra luxury car rental Dubai, the
-            city where dreams become reality. In this ultimate guide to sports
-            car rental Dubai, we will take you on a thrilling journey through
-            the world of luxury and supercar rental Dubai. Imagine cruising down
-            the iconic Sheikh Zayed Road in a sleek and powerful sports car
-            rental Dubai style, turning heads and leaving everyone in awe of
-            your style. Whether you are a car enthusiast or simply looking to
+            {translations[language]?.luxuryCarRentalDesc ||
+              translations.en.luxuryCarRentalDesc}
           </p>
           <h2 className="mt-[30px] text-[28px] md:text-[42px] text-white font-[500]">
-            What are the requirements to rent a luxury car in Dubai?
+            {translations[language]?.rentalRequirements ||
+              translations.en.rentalRequirements}
           </h2>
           <p className="text-white text-[14px] md:text-[16px] leading-[30px] md:leading-[35px] mt-[5px]">
-            To rent a car Dubai, it's enough to have a valid driving license and
-            enough funds. & you'll need to show your foreign passport and prove
-            that you have come of age and have driving experience.The age limit
-            and the requirements for the license depend on where you're from.
-            Visitors from Europe, the UK, the US and the Middle East can drive
-            with their national licenses. People from other parts of the world
-            need an international license. The age limit for the driver might
-            vary from 21 to 25 years. Please get in touch with us before placing
-            an order to discuss your individual situation.Cars in the UAE have
-            steering wheels on the left side. Drivers stick to the right side of
-            the road.If needed, you can add a second driver to your rental
-            contract. The requirements for this person will be the same as for
-            the first driver. If you let someone who isn't mentioned in your
-            rental contract take a place behind the wheel, you can get a
-            fine.The duration of a premium car rental in Dubai can vary from one
-            day to several weeks. Discounts are common for luxury car rental
-            Dubai monthly car rental plan. Use this chance to have fun, increase
-            your high social status and please your dearest and nearest!Please
-            avoid smoking inside the rented vehicle.
+            {translations[language]?.rentalRequirementsDesc ||
+              translations.en.rentalRequirementsDesc}
           </p>
         </div>
       </section>
       <section
         id="sports-car"
-        className="bg-gray-950 relative pt-[60px] pb-[60px] xl:pb-[250px]"
+        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[200px] xl:pb-[300px]"
       >
         <img
           className="hidden md:block absolute top-0  right-0"
@@ -212,18 +168,20 @@ const HomePage = () => {
           ></iframe>
           <div className=" lg:w-[40%]  mx-auto text-center md:mx-0 md:text-left self-right">
             <h1 className="text-white text-[28px] md:text-[42px] leading-[40px] mb-[20px]">
-              SPORTS CAR RENTAL DUBAI
+              {translations[language]?.sportsCarRental ||
+                translations.en.sportsCarRental}
             </h1>
             <p className="text-white text-[14px] md:text-[18px] leading-[30px]">
-              Terra L L C a Car is a Top Luxury Car Rental Dubai based company,
-              We offer sports car rental, and supercar rental in Dubai. The best
-              luxury car rental process provided by our fleet . We own a diverse
-              range of luxury supercar rental and sports car rental Dubai style
-              , including Rolls Royce, Lamborghini, Maserati, Ferrari, Mercedes
-              Benz, Porsche, and Range Rover, to name a few. Rent a car with the
-              best car rental company in Dubai.
+              {translations[language]?.sportsCarRentalDesc ||
+                translations.en.sportsCarRentalDesc}
             </p>
-            <LinkPass title={"ALL CARS"} />
+            <div className="text-center mx-auto flex justify-center">
+              <LinkPass
+                title={`${
+                  translations[language]?.seeLink || translations.en.seeLink
+                }`}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -237,20 +195,34 @@ const HomePage = () => {
         </div>
         <div className="pt-[40px] pb-[30px] md:pb-[0] pl-[30px]">
           <h1 className="text-white text-[28px] sm:text-[32px] font-[500] mb-[5px] md:text-[32px] lg:text-[38px] xl:text-[42px]">
-            SUPERCAR RENTAL DUBAI
+            {translations[language]?.superCarRental ||
+              translations.en.superCarRental}
           </h1>
-          <h2 className="text-white text-[18px]">Hire the latest supercar</h2>
-          <LinkPass title={"SEE ALL"} />
+          <h2 className="text-white text-[18px]">
+            {" "}
+            {translations[language]?.superCarRentalDesc ||
+              translations.en.superCarRentalDesc}
+          </h2>
+          <div className="text-center mx-auto flex justify-center">
+            <LinkPass
+              title={`${
+                translations[language]?.seeLink || translations.en.seeLink
+              }`}
+            />
+          </div>
         </div>
       </section>
-      <section id="faq" className="pt-[90px] pb-[90px] relative  faq bg-cover bg-center">
+      <section
+        id="faq"
+        className="pt-[90px] pb-[90px] relative  faq bg-cover bg-center"
+      >
         <div className="absolute top-0 bg-gray-950 opacity-[0.7] w-full h-full"></div>
         <div className="container relative mx-auto px-[20px]">
           <h1 className="text-center text-white text-[22px] sm:text-[26px] md:text-[28px] lg:text-[32px] font-[500]">
-            FAQ
+            {translations[language]?.faaq || translations.en.faaq}
           </h1>
           <div>
-            {data?.map((item, index) => (
+            {(translations[language]?.faq  || translations?.en?.faq).map((item, index) => (
               <div
                 key={item.id || index}
                 className="h-[90px] max-w-[900px] w-full mx-auto"
@@ -283,7 +255,7 @@ const HomePage = () => {
 
                   {/* Question Text */}
                   <button className="text-white text-center text-[16px] sm:text-[18px] cursor-pointer lg:text-[24px]">
-                    {item.question}
+                    {item.questionFaq}
                   </button>
 
                   {/* Right Icon */}
@@ -323,7 +295,7 @@ const HomePage = () => {
                       : "opacity-0 translate-y-[-20px] h-0 overflow-hidden"
                   }`}
                 >
-                  <p>{item.answer}</p>
+                  <p>{item.answerFaq}</p>
                 </div>
               </div>
             ))}

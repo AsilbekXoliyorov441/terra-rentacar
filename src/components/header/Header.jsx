@@ -5,10 +5,18 @@ import { FaWhatsapp } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import "./style.scss";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setLanguage } from "../../redux/LanguageSlice";
+import { translations } from "../../data";
 
 const Header = () => {
+
   const [brands, setBrands] = useState(null);
   const [resNavbar, setResNavbar] = useState(false);
+
+  const dispatch = useDispatch();
+  const language = useSelector((state) => state?.language.language);
+
   const getBrand = async () => {
     try {
       const res = await axios.get("https://realauto.limsa.uz/api/brands");
@@ -32,14 +40,20 @@ const Header = () => {
         <div className="container mx-auto px-[20px] flex justify-between items-center gap-[20px]">
           <div className="flex items-center gap-[10px]">
             <div className="flex gap-[5px] items-center">
-              <button className="w-[30px] h-[30px] cursor-pointer">
+              <button
+                onClick={() => dispatch(setLanguage("en"))}
+                className="w-[30px] h-[30px] cursor-pointer"
+              >
                 <img
                   className="w-full"
                   src="/header/en-lang.png"
                   alt="en-lang"
                 />
               </button>
-              <button className="w-[30px] h-[30px] cursor-pointer">
+              <button
+                onClick={() => dispatch(setLanguage("ru"))}
+                className="w-[30px] h-[30px] cursor-pointer"
+              >
                 <img
                   className="w-full"
                   src="/header/rus-lang.png"
@@ -60,37 +74,43 @@ const Header = () => {
               />
             </form>
           </div>
-          <Link className="w-[120px] inline-block" to="/">
+          <NavLink className="w-[120px] inline-block" to="/">
             <img src="/header/logo-header.png" alt="logo-header" />
-          </Link>
+          </NavLink>
           <nav className="hidden xl:flex flex-col justify-between h-[75px]">
             <ul className="flex items-center gap-[30px] ">
               <li className="pb-[20px]">
                 <NavLink
-                  className={
-                    "transition-transform duration-300 group text-white text-[24px] uppercase"
+                  className={({ isActive }) =>
+                    `transition-transform duration-300 group  text-[18px] uppercase ${
+                      isActive ? "text-red-500" : "text-white"
+                    }`
                   }
                   to={"cars"}
                 >
-                  Cars
+                  {translations[language]?.navigation?.cars ||
+                    translations?.en?.navigation?.cars}
                   <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
                 </NavLink>
               </li>
               <li className="relative pb-[20px]  group">
                 <NavLink
-                  className={
-                    "transition-transform duration-300  text-white text-[24px] uppercase"
+                  className={({ isActive }) =>
+                    `transition-transform duration-300 group  text-[18px] uppercase ${
+                      isActive ? "text-red-500" : "text-white"
+                    }`
                   }
                   to={"brands"}
                 >
-                  Brands
+                  {translations[language]?.navigation?.brand ||
+                    translations?.en?.navigation?.brand}{" "}
                   <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
                 </NavLink>
 
                 <ul className="absolute hidden transition-transform duration-300 rounded-[12px]  group-hover:grid grid-cols-3 p-[20px] gap-[30px] w-[600px] top-[40px] left-[-157px] bg-gray-700">
                   {brands?.map((brand) => (
                     <li key={brand?.id}>
-                      <Link
+                      <NavLink
                         className=" flex items-center gap-[10px] brand-link"
                         to={`/brands/${brand?.id}`}
                       >
@@ -102,52 +122,64 @@ const Header = () => {
                         <span className="flex flex-nowrap text-gray-200 font-bold text-[18px]">
                           {brand?.title}
                         </span>
-                      </Link>
+                      </NavLink>
                     </li>
                   ))}
                 </ul>
               </li>
               <li className="pb-[20px]">
                 <NavLink
-                  className={
-                    "transition-transform duration-300 group text-white text-[24px] uppercase"
+                  className={({ isActive }) =>
+                    `transition-transform duration-300 group  text-[18px] uppercase ${
+                      isActive ? "text-red-500" : "text-white"
+                    }`
                   }
                   to={"services"}
                 >
-                  Services
+                  {translations[language]?.navigation?.service ||
+                    translations?.en?.navigation?.service}
                   <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
                 </NavLink>
               </li>
               <li className="pb-[20px]">
                 <NavLink
-                  className={
-                    "transition-transform duration-300 group text-white text-[24px] uppercase"
+                  className={({ isActive }) =>
+                    `transition-transform duration-300 group  text-[18px] uppercase ${
+                      isActive ? "text-red-500" : "text-white"
+                    }`
                   }
                   to={"about"}
                 >
-                  About
+                  {translations[language]?.navigation?.aboutUs ||
+                    translations?.en?.navigation?.aboutUs}
                   <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
                 </NavLink>
               </li>
               <li className="pb-[20px]">
                 <NavLink
-                  className={
-                    "transition-transform duration-300 group text-white text-[24px] uppercase"
+                  className={({ isActive }) =>
+                    `transition-transform duration-300 group  text-[18px] uppercase ${
+                      isActive ? "text-red-500" : "text-white"
+                    }`
                   }
                   to={"contact"}
                 >
-                  Contact
+                  {translations[language]?.navigation?.contacts ||
+                    translations?.en?.navigation?.contacts}
                   <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
                 </NavLink>
               </li>
               <li className="pb-[20px]">
                 <NavLink
-                  className={
-                    "transition-transform duration-300 group text-white text-[24px] uppercase"
+                  className={({ isActive }) =>
+                    `transition-transform duration-300 group  text-[18px] uppercase ${
+                      isActive ? "text-red-500" : "text-white"
+                    }`
                   }
                   to={"blog"}
                 >
-                  Blog
+                  {translations[language]?.navigation?.blog ||
+                    translations?.en?.navigation?.blog}
                   <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
                 </NavLink>
               </li>
@@ -176,30 +208,36 @@ const Header = () => {
           <ul className="flex flex-col items-left gap-[30px] ">
             <li className="pb-[20px]">
               <NavLink
-                className={
-                  "transition-transform inline-block  duration-300 group text-white text-[24px] uppercase"
+                className={({ isActive }) =>
+                  `transition-transform duration-300 group inline-block text-[24px] uppercase ${
+                    isActive ? "text-red-500" : "text-white"
+                  }`
                 }
                 to={"cars"}
               >
-                Cars
+                {translations[language]?.navigation?.cars ||
+                  translations?.en?.navigation?.cars}
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
             </li>
             <li className="relative pb-[20px]  group">
               <NavLink
-                className={
-                  "transition-transform inline-block duration-300  text-white text-[24px] uppercase"
+                className={({ isActive }) =>
+                  `transition-transform duration-300 group inline-block text-[24px] uppercase ${
+                    isActive ? "text-red-500" : "text-white"
+                  }`
                 }
                 to={"brands"}
               >
-                Brands
+                {translations[language]?.navigation?.brand ||
+                  translations?.en?.navigation?.brand}{" "}
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
 
               <ul className="absolute hidden transition-transform duration-300 rounded-[12px]  group-hover:grid grid-cols-2 lg:grid-cols-3 p-[20px] gap-[30px] w-[330px] lg:w-[500px]  top-[40px] left-[-20px]  bg-gray-700">
                 {brands?.map((brand) => (
                   <li key={brand?.id}>
-                    <Link
+                    <NavLink
                       className=" flex items-center gap-[10px] brand-link"
                       to={`/brands/${brand?.id}`}
                     >
@@ -211,52 +249,64 @@ const Header = () => {
                       <span className="flex flex-nowrap text-gray-200 font-bold text-[18px]">
                         {brand?.title}
                       </span>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
               </ul>
             </li>
             <li className="pb-[20px]">
               <NavLink
-                className={
-                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
+                className={({ isActive }) =>
+                  `transition-transform duration-300 group inline-block text-[24px] uppercase ${
+                    isActive ? "text-red-500" : "text-white"
+                  }`
                 }
                 to={"services"}
               >
-                Services
+                {translations[language]?.navigation?.service ||
+                  translations?.en?.navigation?.service}
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
             </li>
             <li className="pb-[20px]">
               <NavLink
-                className={
-                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
+                className={({ isActive }) =>
+                  `transition-transform duration-300 group inline-block text-[24px] uppercase ${
+                    isActive ? "text-red-500" : "text-white"
+                  }`
                 }
                 to={"about"}
               >
-                About
+                {translations[language]?.navigation?.aboutUs ||
+                  translations?.en?.navigation?.aboutUs}
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
             </li>
             <li className="pb-[20px]">
               <NavLink
-                className={
-                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
+                className={({ isActive }) =>
+                  `transition-transform duration-300 group inline-block text-[24px] uppercase ${
+                    isActive ? "text-red-500" : "text-white"
+                  }`
                 }
                 to={"contact"}
               >
-                Contact
+                {translations[language]?.navigation?.contacts ||
+                  translations?.en?.navigation?.contacts}
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
             </li>
             <li className="pb-[20px]">
               <NavLink
-                className={
-                  "transition-transform inline-block duration-300 group text-white text-[24px] uppercase"
+                className={({ isActive }) =>
+                  `transition-transform duration-300 group inline-block text-[24px] uppercase ${
+                    isActive ? "text-red-500" : "text-white"
+                  }`
                 }
                 to={"blog"}
               >
-                Blog
+                {translations[language]?.navigation?.blog ||
+                  translations?.en?.navigation?.blog}
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
             </li>
