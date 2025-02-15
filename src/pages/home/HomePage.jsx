@@ -175,7 +175,7 @@ const HomePage = () => {
               {translations[language]?.sportsCarRentalDesc ||
                 translations.en.sportsCarRentalDesc}
             </p>
-            <div className="text-center mx-auto flex justify-center">
+            <div className=" mx-auto flex justify-center md:justify-start">
               <LinkPass
                 title={`${
                   translations[language]?.seeLink || translations.en.seeLink
@@ -193,7 +193,7 @@ const HomePage = () => {
             alt="super-car"
           />
         </div>
-        <div className="pt-[40px] pb-[30px] md:pb-[0] pl-[30px]">
+        <div className="pt-[40px] text-center pb-[30px] md:pb-[0] pl-[30px]">
           <h1 className="text-white text-[28px] sm:text-[32px] font-[500] mb-[5px] md:text-[32px] lg:text-[38px] xl:text-[42px]">
             {translations[language]?.superCarRental ||
               translations.en.superCarRental}
@@ -203,7 +203,7 @@ const HomePage = () => {
             {translations[language]?.superCarRentalDesc ||
               translations.en.superCarRentalDesc}
           </h2>
-          <div className="text-center mx-auto flex justify-center">
+          <div className=" mx-auto flex justify-center md:justify-start">
             <LinkPass
               title={`${
                 translations[language]?.seeLink || translations.en.seeLink
