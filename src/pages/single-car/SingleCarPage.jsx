@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdCalendarToday } from "react-icons/md";
 import { TfiTimer } from "react-icons/tfi";
 import { MdOutlineSpeed } from "react-icons/md";
@@ -22,6 +22,11 @@ const SingleCarPage = () => {
   const mainSliderRef = useRef(null);
   const thumbSliderRef = useRef(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const car = location.state?.car;
 
@@ -385,16 +390,30 @@ const SingleCarPage = () => {
           <h1 className="text-[32px] font-[600] my-[25px]">SIMILAR OFFERS</h1>
           <div className="w-full flex justify-start gap-[20px] ">
             {images.map((item) => (
-              <div key={item.id} className="w-[310px] h-[410px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000">
+              <div
+                key={item.id}
+                className="w-[310px] h-[410px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+              >
                 {/* Bu yerga ma'lumotlar qo'shish mumkin */}
-                <img src={`https://realauto.limsa.uz/api/uploads/images/${car?.car_images[0]?.image?.src}`} alt="Car" className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105" />
-                <h3 className="text-white text-start text-[20px] mt-4">{car?.brand?.title} <span className="pl-[10px]">{car?.model?.name}</span></h3>
-                   
-                   <hr className="text-white my-[25px]" />
+                <img
+                  src={`https://realauto.limsa.uz/api/uploads/images/${car?.car_images[0]?.image?.src}`}
+                  alt="Car"
+                  className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105"
+                />
+                <h3 className="text-white text-start text-[20px] mt-4">
+                  {car?.brand?.title}{" "}
+                  <span className="pl-[10px]">{car?.model?.name}</span>
+                </h3>
 
-                   <h2 className="text-white text-[20px]">AED {car.price_in_aed} / <span className="text-gray-500 text-[17px]">{car.price_in_aed_sale}</span></h2>
-        <span className="text-gray-500 pl-[10px]">per day</span>
+                <hr className="text-white my-[25px]" />
 
+                <h2 className="text-white text-[20px]">
+                  AED {car.price_in_aed} /{" "}
+                  <span className="text-gray-500 text-[17px]">
+                    {car.price_in_aed_sale}
+                  </span>
+                </h2>
+                <span className="text-gray-500 pl-[10px]">per day</span>
               </div>
             ))}
           </div>
