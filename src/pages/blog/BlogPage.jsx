@@ -1,11 +1,11 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const BlogPage = () => {
 
   return (
-    <section className='py-4'>
-      <div className='container w-full mx-auto bg-[#1E1F27]'>
+    <section className='container w-full mx-auto bg-[#1E1F27] py-4'>
+      <div>
        <Link to="/" className='text-[#A5A5A9]'>
          <p className='pl-6 pt-7'>Luxury Cars for Rent in Dubai / Blog</p>
        </Link>
@@ -19,7 +19,7 @@ const BlogPage = () => {
         <p className="mb-3 text-[20px] font-normal text-white max-w-6xl">One of the main reasons to hire a car in Dubai is the quality of the UAE roads. According to the World Economic Forum, the Emirates belong to the top seven countries with the most exemplary road infrastructure.</p>
      <div className='flex items-end justify-between'>
       <p className='text-white pt-7'>25 Seb 2022</p>
-      <img className=' ' src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2010L21%2016.5L13%2023L17.5714%2016.5L13%2010Z'%20fill='white'%3e%3c/path%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20stroke='white'%3e%3c/circle%3e%3c/svg%3e" alt="" />
+      <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2010L21%2016.5L13%2023L17.5714%2016.5L13%2010Z'%20fill='white'%3e%3c/path%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20stroke='white'%3e%3c/circle%3e%3c/svg%3e" alt="" />
      </div>
      </div>
      </a>
@@ -54,4 +54,4 @@ const BlogPage = () => {
   )
 }
 
-export default memo(BlogPage)
+export default memo(BlogPage)  
