@@ -15,6 +15,8 @@ import { Navigation } from "swiper/modules";
 import { useSelector } from "react-redux";
 import { translations } from "../../data";
 import Homecars from "../../components/home-cars/Homecars";
+import Follows from './../../components/Follows/Follows';
+import BrandsPage from "../brands/BrandsPage";
 
 
 const HomePage = () => {
@@ -27,7 +29,7 @@ const HomePage = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
   return (
-    <>
+    <main>
       <section id="hero" className="pt-[90px] pb-[90px]">
         <div className="container px-[20px] mb-[40px] mx-auto">
           <h1 className="text-center font-[500] text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[40px] font-serif">
@@ -104,12 +106,11 @@ const HomePage = () => {
           ))}
         </Swiper>
       </section>
-      <section id="brands"></section>
+      <section id="brands">
+        <BrandsPage/>
+      </section>
       <section id="cars">
-            
-         <Homecars/>
-
-
+        <Homecars />
       </section>
       <section id="service"></section>
       <section id="about"></section>
@@ -229,89 +230,94 @@ const HomePage = () => {
             {translations[language]?.faaq || translations.en.faaq}
           </h1>
           <div>
-            {(translations[language]?.faq  || translations?.en?.faq).map((item, index) => (
-              <div
-                key={item.id || index}
-                className="h-[90px] max-w-[900px] w-full mx-auto"
-              >
-                {/* Header */}
+            {(translations[language]?.faq || translations?.en?.faq).map(
+              (item, index) => (
                 <div
-                  onClick={() => toggleAccordion(index)}
-                  className="flex gap-[5px] pb-[20px] pt-[20px] items-center mx-auto justify-center cursor-pointer"
+                  key={item.id || index}
+                  className="h-[90px] max-w-[900px] w-full mx-auto"
                 >
-                  {/* Left Icon */}
-                  <span
-                    className={`${
-                      openIndex === index ? "animate-bounce" : "bounce-x-left"
-                    } mr-[20px]`}
+                  {/* Header */}
+                  <div
+                    onClick={() => toggleAccordion(index)}
+                    className="flex gap-[5px] pb-[20px] pt-[20px] items-center mx-auto justify-center cursor-pointer"
                   >
-                    <svg
-                      width="22px"
+                    {/* Left Icon */}
+                    <span
                       className={`${
-                        openIndex === index ? "rotate-270" : "rotate-180"
-                      } transition-transform duration-300 fill-white`}
-                      viewBox="0 0 64 64"
-                      xmlns="http://www.w3.org/2000/svg"
+                        openIndex === index ? "animate-bounce" : "bounce-x-left"
+                      } mr-[20px]`}
                     >
-                      <g id="Layer_67" data-name="Layer 67">
-                        <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                        <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                      </g>
-                    </svg>
-                  </span>
+                      <svg
+                        width="22px"
+                        className={`${
+                          openIndex === index ? "rotate-270" : "rotate-180"
+                        } transition-transform duration-300 fill-white`}
+                        viewBox="0 0 64 64"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="Layer_67" data-name="Layer 67">
+                          <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                          <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                        </g>
+                      </svg>
+                    </span>
 
-                  {/* Question Text */}
-                  <button className="text-white text-center text-[16px] sm:text-[18px] cursor-pointer lg:text-[24px]">
-                    {item.questionFaq}
-                  </button>
+                    {/* Question Text */}
+                    <button className="text-white text-center text-[16px] sm:text-[18px] cursor-pointer lg:text-[24px]">
+                      {item.questionFaq}
+                    </button>
 
-                  {/* Right Icon */}
+                    {/* Right Icon */}
+                    <span
+                      className={`${
+                        openIndex === index
+                          ? "animate-bounce"
+                          : "bounce-x-right"
+                      } ml-[20px]`}
+                    >
+                      <svg
+                        width="22px"
+                        className={`${
+                          openIndex === index ? "-rotate-90" : "rotate-0"
+                        } transition-transform duration-300 fill-white`}
+                        viewBox="0 0 64 64"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="Layer_67" data-name="Layer 67">
+                          <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                          <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                        </g>
+                      </svg>
+                    </span>
+                  </div>
+
+                  {/* Animated Gradient Border */}
                   <span
-                    className={`${
-                      openIndex === index ? "animate-bounce" : "bounce-x-right"
-                    } ml-[20px]`}
+                    className={`animated-gradient block h-[2px] bg-gray-500 transition-all duration-500 mx-auto ${
+                      openIndex === index ? "w-0" : "w-full"
+                    }`}
+                  ></span>
+
+                  {/* Answer (Content) */}
+                  <div
+                    className={`faq-item rounded-[8px] transform transition-all relative z-20 duration-300 bg-gray-700 text-white text-[18px] p-[10px] ${
+                      openIndex === index
+                        ? "opacity-100 translate-y-[10px] h-auto"
+                        : "opacity-0 translate-y-[-20px] h-0 overflow-hidden"
+                    }`}
                   >
-                    <svg
-                      width="22px"
-                      className={`${
-                        openIndex === index ? "-rotate-90" : "rotate-0"
-                      } transition-transform duration-300 fill-white`}
-                      viewBox="0 0 64 64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g id="Layer_67" data-name="Layer 67">
-                        <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                        <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                      </g>
-                    </svg>
-                  </span>
+                    <p>{item.answerFaq}</p>
+                  </div>
                 </div>
-
-                {/* Animated Gradient Border */}
-                <span
-                  className={`animated-gradient block h-[2px] bg-gray-500 transition-all duration-500 mx-auto ${
-                    openIndex === index ? "w-0" : "w-full"
-                  }`}
-                ></span>
-
-                {/* Answer (Content) */}
-                <div
-                  className={`faq-item rounded-[8px] transform transition-all relative z-20 duration-300 bg-gray-700 text-white text-[18px] p-[10px] ${
-                    openIndex === index
-                      ? "opacity-100 translate-y-[10px] h-auto"
-                      : "opacity-0 translate-y-[-20px] h-0 overflow-hidden"
-                  }`}
-                >
-                  <p>{item.answerFaq}</p>
-                </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </section>
-      <section id="follow"></section>
-      <section id="locations"></section>
-    </>
+      <section id="follow">
+        <Follows />
+      </section>
+    </main>
   );
 };
 

@@ -29,7 +29,7 @@ function App() {
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="blog" element={<BlogPage />} />
-          <Route path="blog/:id" element={<SingleBlogPage />} />
+          <Route path="blog/singleblog" element={<SingleBlogPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

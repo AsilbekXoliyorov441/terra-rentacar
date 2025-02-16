@@ -15,12 +15,7 @@ const CarsPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
-  const { pathname } = useLocation();
-
-
-
   useEffect(() => {
-    window.scrollTo(0, 0);
     axios
       .get("https://realauto.limsa.uz/api/cars")
       .then((response) => {
@@ -49,7 +44,7 @@ const CarsPage = () => {
       .catch((error) => {
         console.error("Kategoriyalarni olishda xatolik:", error);
       });
-  }, [[pathname]]);
+  });
 
   const handleBrandChange = (brandId) => {
     setSelectedBrands((prev) =>
