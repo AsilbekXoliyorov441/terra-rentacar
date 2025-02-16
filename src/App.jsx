@@ -12,6 +12,7 @@ import SingleBrandPage from "./pages/single-brand/SingleBrandPage";
 import SingleBlogPage from "./pages/single-blog/SingleBlogPage";
 import UslugBuggiesPage from "./pages/uslug-buggies/UslugBuggiesPage";
 import UslugCarPage from "./pages/uslug-car/UslugCarPage";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/singleblog" element={<SingleBlogPage />} />
+          <Route path="*" element={<NotFound/>} />
         </Route>
       </Routes>
     </BrowserRouter>

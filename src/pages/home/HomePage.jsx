@@ -82,9 +82,9 @@ const HomePage = () => {
           modules={[Navigation]}
           className="mySwiper"
           breakpoints={{
-            640: { slidesPerView: 1 }, // sm: 1 ta slayd
-            1024: { slidesPerView: 3 }, // lg: 2 ta slayd
-            1280: { slidesPerView: 3 }, // xl: 3 ta slayd
+            640: { slidesPerView: 1 },
+            1024: { slidesPerView: 3 }, 
+            1280: { slidesPerView: 3 }, 
           }}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex - 1)}
         >
