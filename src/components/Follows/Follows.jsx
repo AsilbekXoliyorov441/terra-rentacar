@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules"; // ✅ To‘g‘ri import
 import "swiper/css";
@@ -6,20 +6,7 @@ import "swiper/css/pagination";
 import axios from 'axios';
 
 function Follows() {
-    const Forimage = "https://realauto.limsa.uz/api/uploads/images";
-    const [follows, setFollows] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
-  
-    useEffect(() => {
-      axios
-        .get("https://realauto.limsa.uz/api/cars")
-        .then((response) => {
-          setFollows(response?.data?.data);
-        })
-        .catch((error) => {
-          console.error("Error fetching brands:", error);
-        });
-      }, []);
 
   return (
     <div>
@@ -35,22 +22,90 @@ function Follows() {
           1280: { slidesPerView: 6, spaceBetween: 25 }, // Katta ekran
         }}
         pagination={{ clickable: true }}
-        modules={[ Pagination]}
+        modules={[ Pagination ]}
         loop={true}
         className="w-full"
       >
-        {follows?.map((follow) => (
-          <SwiperSlide key={follow?.id}>
+          <SwiperSlide>
             <div className="block">
-              <div
-                className="mb-8 flex items-center justify-center w-full cursor-pointer"
-                onClick={() => setSelectedImage(`${Forimage}/${follow?.car_images[0]?.image?.src}`)}
-              >
-                <img className="h-46 object-cover" src={`${Forimage}/${follow?.car_images[0]?.image?.src}`} alt="Instagram image" />
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/1T-D45PTDEI.jpg")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/1T-D45PTDEI.jpg" alt="Instagram image" />
               </div>
             </div>
           </SwiperSlide>
-        ))}
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/2T-B1mJGEs-.jpg")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/2T-B1mJGEs-.jpg" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/3T-BkJVRiBs.webp")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/3T-BkJVRiBs.webp" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/4T-BGQV6HlH.jpg")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/4T-BGQV6HlH.jpg" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/5T-BISrHmDi.jpg")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/5T-BISrHmDi.jpg" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/6T-Bs7OhdEn.webp")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/6T-Bs7OhdEn.webp" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/7T-DB-zL0r0.webp")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/7T-DB-zL0r0.webp" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/8T-Dve_QKXj.webp")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/8T-Dve_QKXj.webp" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/9T-BtgLeMAz.webp")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/9T-BtgLeMAz.webp" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="block">
+              <div className="mb-8 flex items-center justify-center w-full cursor-pointer"
+                onClick={() => setSelectedImage("https://terra-rentacar.netlify.app/assets/10T-C3d3mJb9.webp")}>
+                <img className="h-46 object-cover" src="https://terra-rentacar.netlify.app/assets/10T-C3d3mJb9.webp" alt="Instagram image" />
+              </div>
+            </div>
+          </SwiperSlide>
       </Swiper>
 
       {/* Modal - Rasm kattalashtirish */}
