@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import LinkPass from "../../components/link-pass/LinkPass";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { FaWhatsapp } from "react-icons/fa";
+import { RiTelegramFill } from "react-icons/ri";
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -13,6 +16,9 @@ import "swiper/css/pagination";
 import { Navigation } from "swiper/modules";
 import { useSelector } from "react-redux";
 import { translations } from "../../data";
+import Homecars from "../../components/home-cars/Homecars";
+import Follows from './../../components/Follows/Follows';
+import BrandsPage from "../brands/BrandsPage";
 
 
 const HomePage = () => {
@@ -25,7 +31,7 @@ const HomePage = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
   return (
-    <>
+    <main>
       <section id="hero" className="pt-[90px] pb-[90px]">
         <div className="container px-[20px] mb-[40px] mx-auto">
           <h1 className="text-center font-[500] text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[40px] font-serif">
@@ -39,7 +45,7 @@ const HomePage = () => {
               translations?.en?.heroSubtitle}
           </p>
           <Link
-            className={`group w-full mx-auto md:mx-0 text-[14px] sm:text-[16px] md:text-[18px]  hover:text-red-600 transition-colors duration-300 flex items-center justify-center gap-[10px] font-[500] mt-[30px] text-white`}
+            className={`group w-full mx-auto md:mx-0 text-[14px] sm:text-[16px] md:text-[18px] text-center hover:text-red-600 transition-colors duration-300 flex items-center justify-center gap-[10px] font-[500] mt-[30px] text-white`}
             to="/cars"
           >
             <span className="group-hover:-translate-x-[20px] transition-transform duration-300">
@@ -47,7 +53,7 @@ const HomePage = () => {
             </span>
             <svg
               data-v-727266f5
-              className="border-white  border rounded-full group-hover:translate-x-[20px] transition-transform duration-300 transition-colors group-hover:border-red-600"
+              className="border-white w-[36px]  border rounded-full group-hover:translate-x-[10px] transition-transform duration-300 transition-colors group-hover:border-red-600"
               width="36"
               height="36"
               viewBox="0 0 32 32"
@@ -102,8 +108,12 @@ const HomePage = () => {
           ))}
         </Swiper>
       </section>
-      <section id="brands"></section>
-      <section id="cars">Alyorbek</section>
+      <section id="brands">
+        <BrandsPage/>
+      </section>
+      <section id="cars">
+        <Homecars />
+      </section>
       <section id="service"></section>
       <section id="about"></section>
       <section id="rental" className="relative pt-[60px] pb-[90px]">
@@ -138,16 +148,15 @@ const HomePage = () => {
       </section>
       <section
         id="sports-car"
-        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[200px] xl:pb-[300px]"
+        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[100px] lg:pb-[200px] xl:pb-[300px]"
       >
         <img
-          className="hidden md:block absolute top-0  right-0"
-          width={400}
+          className="hidden md:w-[300px] lg:w-[350px] xl:w-[400px] md:block absolute top-0  right-0"
           src="/home/sport-car-left.png"
           alt="sport-car-left"
         />
         <iframe
-          className="hidden h-[400px] xl:h-[500px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:block lg:absolute left-0 "
+          className="hidden h-[400px] xl:h-[450px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:block lg:absolute left-0 "
           src="https://www.youtube.com/embed/rsHmvxJ86PA?si=IV1NlzM7QxBEHYow"
           title="YouTube video player"
           frameborder="0"
@@ -175,7 +184,7 @@ const HomePage = () => {
               {translations[language]?.sportsCarRentalDesc ||
                 translations.en.sportsCarRentalDesc}
             </p>
-            <div className="text-center mx-auto flex justify-center">
+            <div className=" mx-auto flex justify-center md:justify-start">
               <LinkPass
                 title={`${
                   translations[language]?.seeLink || translations.en.seeLink
@@ -193,7 +202,7 @@ const HomePage = () => {
             alt="super-car"
           />
         </div>
-        <div className="pt-[40px] pb-[30px] md:pb-[0] pl-[30px]">
+        <div className="pt-[40px] text-center pb-[30px] md:pb-[0] pl-[30px]">
           <h1 className="text-white text-[28px] sm:text-[32px] font-[500] mb-[5px] md:text-[32px] lg:text-[38px] xl:text-[42px]">
             {translations[language]?.superCarRental ||
               translations.en.superCarRental}
@@ -203,7 +212,7 @@ const HomePage = () => {
             {translations[language]?.superCarRentalDesc ||
               translations.en.superCarRentalDesc}
           </h2>
-          <div className="text-center mx-auto flex justify-center">
+          <div className=" mx-auto flex justify-center md:justify-start">
             <LinkPass
               title={`${
                 translations[language]?.seeLink || translations.en.seeLink
@@ -222,89 +231,94 @@ const HomePage = () => {
             {translations[language]?.faaq || translations.en.faaq}
           </h1>
           <div>
-            {(translations[language]?.faq  || translations?.en?.faq).map((item, index) => (
-              <div
-                key={item.id || index}
-                className="h-[90px] max-w-[900px] w-full mx-auto"
-              >
-                {/* Header */}
+            {(translations[language]?.faq || translations?.en?.faq).map(
+              (item, index) => (
                 <div
-                  onClick={() => toggleAccordion(index)}
-                  className="flex gap-[5px] pb-[20px] pt-[20px] items-center mx-auto justify-center cursor-pointer"
+                  key={item.id || index}
+                  className="h-[90px] max-w-[900px] w-full mx-auto"
                 >
-                  {/* Left Icon */}
-                  <span
-                    className={`${
-                      openIndex === index ? "animate-bounce" : "bounce-x-left"
-                    } mr-[20px]`}
+                  {/* Header */}
+                  <div
+                    onClick={() => toggleAccordion(index)}
+                    className="flex gap-[5px] pb-[20px] pt-[20px] items-center mx-auto justify-center cursor-pointer"
                   >
-                    <svg
-                      width="22px"
+                    {/* Left Icon */}
+                    <span
                       className={`${
-                        openIndex === index ? "rotate-270" : "rotate-180"
-                      } transition-transform duration-300 fill-white`}
-                      viewBox="0 0 64 64"
-                      xmlns="http://www.w3.org/2000/svg"
+                        openIndex === index ? "animate-bounce" : "bounce-x-left"
+                      } mr-[20px]`}
                     >
-                      <g id="Layer_67" data-name="Layer 67">
-                        <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                        <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                      </g>
-                    </svg>
-                  </span>
+                      <svg
+                        width="22px"
+                        className={`${
+                          openIndex === index ? "rotate-270" : "rotate-180"
+                        } transition-transform duration-300 fill-white`}
+                        viewBox="0 0 64 64"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="Layer_67" data-name="Layer 67">
+                          <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                          <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                        </g>
+                      </svg>
+                    </span>
 
-                  {/* Question Text */}
-                  <button className="text-white text-center text-[16px] sm:text-[18px] cursor-pointer lg:text-[24px]">
-                    {item.questionFaq}
-                  </button>
+                    {/* Question Text */}
+                    <button className="text-white text-center text-[16px] sm:text-[18px] cursor-pointer lg:text-[24px]">
+                      {item.questionFaq}
+                    </button>
 
-                  {/* Right Icon */}
+                    {/* Right Icon */}
+                    <span
+                      className={`${
+                        openIndex === index
+                          ? "animate-bounce"
+                          : "bounce-x-right"
+                      } ml-[20px]`}
+                    >
+                      <svg
+                        width="22px"
+                        className={`${
+                          openIndex === index ? "-rotate-90" : "rotate-0"
+                        } transition-transform duration-300 fill-white`}
+                        viewBox="0 0 64 64"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="Layer_67" data-name="Layer 67">
+                          <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                          <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
+                        </g>
+                      </svg>
+                    </span>
+                  </div>
+
+                  {/* Animated Gradient Border */}
                   <span
-                    className={`${
-                      openIndex === index ? "animate-bounce" : "bounce-x-right"
-                    } ml-[20px]`}
+                    className={`animated-gradient block h-[2px] bg-gray-500 transition-all duration-500 mx-auto ${
+                      openIndex === index ? "w-0" : "w-full"
+                    }`}
+                  ></span>
+
+                  {/* Answer (Content) */}
+                  <div
+                    className={`faq-item rounded-[8px] transform transition-all relative z-20 duration-300 bg-gray-700 text-white text-[18px] p-[10px] ${
+                      openIndex === index
+                        ? "opacity-100 translate-y-[10px] h-auto"
+                        : "opacity-0 translate-y-[-20px] h-0 overflow-hidden"
+                    }`}
                   >
-                    <svg
-                      width="22px"
-                      className={`${
-                        openIndex === index ? "-rotate-90" : "rotate-0"
-                      } transition-transform duration-300 fill-white`}
-                      viewBox="0 0 64 64"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g id="Layer_67" data-name="Layer 67">
-                        <path d="m35.21 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.15 26.72 22.15 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                        <path d="m52 62a2 2 0 0 1 -1.54-.72l-23.21-28a2 2 0 0 1 0-2.55l23.21-28a2 2 0 1 1 3.08 2.55l-22.16 26.72 22.16 26.72a2 2 0 0 1 -1.54 3.28z"></path>
-                      </g>
-                    </svg>
-                  </span>
+                    <p>{item.answerFaq}</p>
+                  </div>
                 </div>
-
-                {/* Animated Gradient Border */}
-                <span
-                  className={`animated-gradient block h-[2px] bg-gray-500 transition-all duration-500 mx-auto ${
-                    openIndex === index ? "w-0" : "w-full"
-                  }`}
-                ></span>
-
-                {/* Answer (Content) */}
-                <div
-                  className={`faq-item rounded-[8px] transform transition-all relative z-20 duration-300 bg-gray-700 text-white text-[18px] p-[10px] ${
-                    openIndex === index
-                      ? "opacity-100 translate-y-[10px] h-auto"
-                      : "opacity-0 translate-y-[-20px] h-0 overflow-hidden"
-                  }`}
-                >
-                  <p>{item.answerFaq}</p>
-                </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         </div>
       </section>
-      <section id="follow"></section>
-      <section id="locations"></section>
-    </>
+      <section id="follow">
+        <Follows />
+      </section>
+    </main>
   );
 };
 
