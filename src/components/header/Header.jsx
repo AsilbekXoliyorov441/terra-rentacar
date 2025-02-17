@@ -74,7 +74,7 @@ const Header = () => {
                 />
               </button>
             </div>
-            <form onSubmit={handleSearch} className="relative hidden xl:block w-[350px] overflow-hidden rounded-[10px]">
+            <form onChange={handleSearch} className="relative hidden xl:block w-[350px] overflow-hidden rounded-[10px]">
       <input
         type="search"
         value={searchTerm}

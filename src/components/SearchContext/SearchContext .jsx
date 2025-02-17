@@ -1,17 +1,28 @@
-// import { createContext, useState, useContext } from "react";
+// SearchContext.js
+import React, { createContext, useContext, useState } from "react";
 
-// const SearchContext = createContext();
+const SearchContext = createContext();
 
-// export const SearchProvider = ({ children }) => {
-//   const [searchTerm, setSearchTerm] = useState("");
+export const useSearchContext = () => {
+  return useContext(SearchContext);
+};
 
-//   return (
-//     <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
-//       {children}
-//     </SearchContext.Provider>
-//   );
-// };
+export const SearchProvider = ({ children }) => {
+  const [searchTerm, setSearchTerm] = useState("");  // Qidiruv so'zi
+  const [filteredCars, setFilteredCars] = useState([]);  // Filtrlash natijasi
 
-// export const useSearch = () => {
-//   return useContext(SearchContext);
-// };
+  const filterCars = (cars) => {
+    const filtered = cars.filter(
+      (car) =>
+        car.brand?.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        car.model?.name?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCars(filtered);  // Filtrlangan mashinalarni yangilash
+  };
+
+  return (
+    <SearchContext.Provider value={{ searchTerm, setSearchTerm, filteredCars, filterCars }}>
+      {children}
+    </SearchContext.Provider>
+  );
+};
