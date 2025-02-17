@@ -13,8 +13,8 @@ const CarsPage = () => {
   const [selectedModel, setSelectedModel] = useState("");
   const [filteredCars, setFilteredCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [openFilterMenu, setOpenFilterMenu] = useState(false);
   const navigate = useNavigate();
-
   const [searchParams] = useSearchParams();
 
   // Ma'lumotlarni yuklash
@@ -61,7 +61,7 @@ const CarsPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!cars.length) return; 
+    if (!cars.length) return;
 
     const searchTerm = searchParams.get("search")?.toLowerCase() || ""; // Qidiruv so‘zini olish va kichik harfga o'tkazish
     const filtered = cars.filter(
@@ -102,12 +102,10 @@ const CarsPage = () => {
     );
   };
 
-  // Modelni tanlash
   const handleModelChange = (model) => {
     setSelectedModel(model);
   };
 
-  // Filtrlashni qo'llash
   const applyFilter = () => {
     const filtered = cars.filter(
       (car) =>
@@ -128,137 +126,172 @@ const CarsPage = () => {
     setFilteredCars(cars);
   };
 
-  // Noyob modellarni olish
   const uniqueModels = [...new Set(cars.map((car) => car.model.name))];
 
   return (
-    <div className="container w-full h-auto border-red m-auto flex pl-[5px] my-[50px]">
-      {/* Filter qismi */}
-      <div className="absolute translate-x-[-150%] lg:translate-x-0 translate-transform duration-500 lg:relative lg:block w-[350px] h-auto bg-[#272933] top-[30px] pt-[35px] pl-[30px] pr-[30px] py-[15px]">
-        <h2 className="text-[#fff] text-[25px] font-[700]">
-          Filter By <br />
-          <span className="font-[350]">Offers</span>
-        </h2>
-        <hr className="text-[#d6d1d1] mt-[25px]" />
+    <section id="cars" className="pt-[30px]  pb-[90px]">
+      <button
+        className="block lg:hidden"
+        onClick={() => setOpenFilterMenu(true)}
+      >
+        <img src="/cars/toggle.svg" alt="toggle" />
+      </button>
+      <div className="container  w-full border-red m-auto flex pl-[5px] my-[50px]">
+        <div
+          className={` ${
+            openFilterMenu
+              ? "translate-x-[0%] z-30 top-[105px] w-full"
+              : "top-[130px]"
+          } absolute left-0  translate-x-[-200%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
+        >
+          <div
+            className={`${
+              openFilterMenu ? "block" : "hidden"
+            } flex items-start justify-between`}
+          >
+            <img
+              className="w-[60%]"
+              src="/cars/TerraAvto-CveSQ9CU.png"
+              alt="terra"
+            />
+            <button onClick={() => setOpenFilterMenu(false)}>
+              <img src="/cars/close-toggle.svg" alt="close" />
+            </button>
+          </div>
+          <h2 className="text-[#fff] text-[25px] font-[700]">
+            Filter By <br />
+            <span className="font-[350]">Offers</span>
+          </h2>
+          <hr className="text-[#d6d1d1] mt-[25px]" />
 
-        {/* Kategoriya filtri */}
-        <form>
-          <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
-          <div className="flex flex-col gap-[10px]">
-            {categories.map((item) => (
+          <form>
+            <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
+            <div className="flex flex-col gap-[10px]">
+              {categories.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-center text-[#fff] gap-[15px]"
+                >
+                  <input
+                    type="checkbox"
+                    checked={selectedCategories.includes(item.id)}
+                    onChange={() => handleCategoryChange(item.id)}
+                  />
+                  <p className="uppercase">{item.name_en}</p>
+                </div>
+              ))}
+            </div>
+          </form>
+
+          <hr className="text-[#d6d1d1] mt-[25px]" />
+
+          <form>
+            <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
+            {brands.map((item) => (
               <div
                 key={item.id}
                 className="flex items-center text-[#fff] gap-[15px]"
               >
                 <input
                   type="checkbox"
-                  checked={selectedCategories.includes(item.id)}
-                  onChange={() => handleCategoryChange(item.id)}
+                  checked={selectedBrands.includes(item.id)}
+                  onChange={() => handleBrandChange(item.id)}
                 />
-                <p className="uppercase">{item.name_en}</p>
+                <p className="uppercase">{item.title}</p>
               </div>
             ))}
-          </div>
-        </form>
-
-        <hr className="text-[#d6d1d1] mt-[25px]" />
-
-        {/* Brend filtri */}
-        <form>
-          <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
-          {filterUniqueByTitle(brands).map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center text-[#fff] gap-[15px]"
-            >
-              <input
-                type="checkbox"
-                checked={selectedBrands.includes(item.id)}
-                onChange={() => handleBrandChange(item.id)}
-              />
-              <p className="uppercase">{item.title}</p>
-            </div>
-          ))}
-        </form>
-
-        {/* Model filtri */}
-        <form>
+          </form>
           <p className="text-[#fff] mt-[20px] mb-[20px]">Model</p>
           <select
-            value={selectedModel}
-            onChange={(e) => handleModelChange(e.target.value)}
+            name=""
+            id=""
             className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
           >
-            <option value="">Barcha modellar</option>
-            {uniqueModels.map((model, index) => (
-              <option key={index} value={model}>
-                {model}
-              </option>
+            {cars.map((item) => (
+              <option value="">{item?.model?.name}</option>
             ))}
           </select>
-        </form>
 
-        {/* Filter tugmalari */}
-        <div className="w-full mt-[25px] flex gap-[25px] justify-between">
-          <button
-            className="pt-[10px] pb-[10px] pl-[25px] pr-[25px] text-[#fff] border-2 border-white rounded-[4px] cursor-pointer"
-            onClick={handleReset}
-          >
-            Reset
-          </button>
-          <button
-            className="pt-[10px] pb-[10px] pl-[35px] pr-[25px] bg-[#009A00] rounded-[4px] text-[#fff] cursor-pointer"
-            onClick={applyFilter}
-          >
-            Apply filter
-          </button>
+          <div className="w-full mt-[25px] flex gap-[25px] justify-between">
+            <button
+              className="pt-[10px] pb-[10px] pl-[25px] pr-[25px] text-[#fff] border-2 border-white rounded-[4px] cursor-pointer"
+              onClick={handleReset}
+            >
+              Reset
+            </button>
+            <button
+              className="pt-[10px] pb-[10px] pl-[35px] pr-[25px] bg-[#009A00] rounded-[4px] text-[#fff] cursor-pointer"
+              onClick={() => {
+                applyFilter, setOpenFilterMenu(false);
+              }}
+            >
+              Apply filter
+            </button>
+          </div>
+        </div>
+
+        <div className=" lg:ml-[25%] min-h-[900px]  xl:ml-[23%] lg:w-[77%]">
+          <div className="flex pl-[20px] items-center gap-[5px]">
+            <a
+              className="text-white text-[12px] sm:text-[14px] md:text-[16px] "
+              href="/"
+            >
+              Luxury Cars for Rent in Dubai /
+            </a>
+            <a
+              className="text-white text-[12px] sm:text-[14px] md:text-[16px]"
+              href="/cars"
+            >
+              Hire the latest supercar
+            </a>
+          </div>
+          <div className=" min-h-[680px] flex flex-wrap justify-center sm:justify-between  pt-[25px] gap-[15px] pb-[25px]">
+            {loading ? (
+              <p className="text-white">Yuklanmoqda...</p>
+            ) : filteredCars.length === 0 ? (
+              <p className="text-white text-center w-full text-lg">
+                Mos keladigan mashina topilmadi
+              </p>
+            ) : (
+              filteredCars.map((item) => (
+                <div
+                  key={item.id}
+                  className="max-w-[300px]  sm:max-w-[300px] md:max-w-[350px] xl:max-w-[310px] w-full h-[430px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+                >
+                  <img
+                    src={`https://realauto.limsa.uz/api/uploads/images/${item?.car_images[0]?.image?.src}`}
+                    alt="Car"
+                    className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105"
+                    onClick={() =>
+                      navigate(`/cars/${item.id}`, { state: { car: item } })
+                    }
+                  />
+                  <h3 className="text-white text-start text-[20px] mt-4">
+                    {item?.brand?.title}{" "}
+                    <span className="pl-[10px]">{item?.model?.name}</span>
+                  </h3>
+                  <h2 className="text-white text-[20px]">
+                    AED {item.price_in_aed} /{" "}
+                    <span className="text-gray-500 text-[17px]">
+                      {item.price_in_aed_sale}
+                    </span>
+                  </h2>
+                  <span className="text-gray-500 pl-[10px]">per day</span>
+                  <div className="w-full flex justify-center gap-[25px] items-center mt-[5px]">
+                    <button className="bg-[#00C600] px-[20px] flex gap-1.5 items-center py-[10px] text-white rounded-[5px]">
+                      <FaWhatsapp /> Whatsapp
+                    </button>
+                    <button className="bg-[#2727E0] px-[20px] py-[10px] flex gap-1.5 items-center text-white rounded-[5px]">
+                      <RiTelegramFill /> Telegram
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </div>
       </div>
-
-      <div className="w-[1150px] min-h-[680px] flex flex-wrap pl-[15px] pt-[25px] gap-[15px] pb-[25px]">
-        {loading ? (
-          <p className="text-white">Yuklanmoqda...</p>
-        ) : filteredCars.length === 0 ? (
-          <p className="text-white text-center w-full text-lg">
-            Mos keladigan mashina topilmadi
-          </p>
-        ) : (
-          filteredCars.map((item) => (
-            <div
-              key={item.id}
-              className="w-[310px] h-[430px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
-            >
-              <img
-                src={`https://realauto.limsa.uz/api/uploads/images/${item?.car_images[0]?.image?.src}`}
-                alt="Car"
-                className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105"
-                onClick={() => navigate(`/cars/${item.id}`, { state: { car: item } })}
-              />
-              <h3 className="text-white text-start text-[20px] mt-4">
-                {item?.brand?.title}{" "}
-                <span className="pl-[10px]">{item?.model?.name}</span>
-              </h3>
-              <hr className="w-full my-[15px] text-[#fff]" />
-              <h2 className="text-white text-[20px]">
-                AED {item.price_in_aed} /{" "}
-                <span className="text-gray-500 text-[17px]">
-                  {item.price_in_aed_sale}
-                </span>
-              </h2>
-              <span className="text-gray-500 pl-[10px]">per day</span>
-              <div className="w-full flex justify-center gap-[25px] items-center mt-[5px]">
-                <button className="bg-[#00C600] px-[20px] flex gap-1.5 items-center py-[10px] text-white rounded-[5px]">
-                  <FaWhatsapp /> Whatsapp
-                </button>
-                <button className="bg-[#2727E0] px-[20px] py-[10px] flex gap-1.5 items-center text-white rounded-[5px]">
-                  <RiTelegramFill /> Telegram
-                </button>
-              </div>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
+    </section>
   );
 };
 

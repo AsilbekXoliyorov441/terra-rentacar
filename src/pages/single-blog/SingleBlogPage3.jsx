@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
-const SingleBlogPage = () => {
+const SingleBlogPage3 = () => {
   return (
     <div>
       <section className='bg-[#1E1F27] mx-auto'>
@@ -18,7 +18,7 @@ const SingleBlogPage = () => {
         </p>
         <p className='pb-5'>Abu-Dhabi</p>
           <img
-            src="https://terra-rentacar.netlify.app/assets/blog-1-CqRaJa1U.jpg"
+            src="https://terra-rentacar.netlify.app/assets/blog-3-BRfPXlF4.jpg"
             alt="Image of Abu Dhabi"
             loading='lazy'
             className="w-full mb-5 md:w-full h-[500px]"
@@ -33,4 +33,4 @@ const SingleBlogPage = () => {
   );
 }
 
-export default SingleBlogPage
+export default SingleBlogPage3

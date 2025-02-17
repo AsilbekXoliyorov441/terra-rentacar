@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.5.1",
     "@splidejs/react-splide": "^0.7.12",
     "@tailwindcss/vite": "^4.0.6",
+    "aos": "^2.3.4",
     "axios": "^1.7.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

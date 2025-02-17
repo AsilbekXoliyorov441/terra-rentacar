@@ -12,9 +12,15 @@ import SingleBrandPage from "./pages/single-brand/SingleBrandPage";
 import SingleBlogPage from "./pages/single-blog/SingleBlogPage";
 import UslugBuggiesPage from "./pages/uslug-buggies/UslugBuggiesPage";
 import UslugCarPage from "./pages/uslug-car/UslugCarPage";
-import NotFound from "./pages/NotFound/NotFound";
+import SingleBlogPage2 from "./pages/single-blog/SingleBlogPage2";
+import SingleBlogPage3 from "./pages/single-blog/SingleBlogPage3";
+
+
 
 function App() {
+  
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,7 +37,8 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/singleblog" element={<SingleBlogPage />} />
-          <Route path="*" element={<NotFound/>} />
+          <Route path="blog/singleblog2" element={<SingleBlogPage2 />} />
+          <Route path="blog/singleblog3" element={<SingleBlogPage3 />} />
         </Route>
       </Routes>
     </BrowserRouter>
