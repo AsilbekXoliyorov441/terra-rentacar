@@ -111,11 +111,11 @@ const Header = () => {
                   {brands?.map((brand) => (
                     <li key={brand?.id}>
                       <NavLink
-                        className=" flex items-center gap-[10px] brand-link"
+                        className="brand-img flex items-center gap-[10px] brand-link"
                         to={`/brands/${brand?.id}`}
                       >
                         <img
-                          className="w-[40px] "
+                          className="w-[40px]  "
                           src={`https://realauto.limsa.uz/api/uploads/images/${brand?.image_src}`}
                           alt="image"
                         />
@@ -208,6 +208,7 @@ const Header = () => {
           <ul className="flex flex-col items-left gap-[30px] ">
             <li className="pb-[20px]">
               <NavLink
+                onClick={() => setResNavbar(false)}
                 className={({ isActive }) =>
                   `transition-transform duration-300 group inline-block text-[24px] uppercase ${
                     isActive ? "text-red-500" : "text-white"
@@ -220,8 +221,9 @@ const Header = () => {
                 <span className="block h-[1px] mx-auto bg-red-500 transition-all duration-1000 ease-in-out group-hover:max-w-full max-w-[0px] rounded-full"></span>
               </NavLink>
             </li>
-            <li className="relative pb-[20px]  group">
+            <li className="relative pb-[20px]  group max-w-[100px] inline-block">
               <NavLink
+                onClick={() => setResNavbar(false)}
                 className={({ isActive }) =>
                   `transition-transform duration-300 group inline-block text-[24px] uppercase ${
                     isActive ? "text-red-500" : "text-white"
@@ -256,6 +258,7 @@ const Header = () => {
             </li>
             <li className="pb-[20px]">
               <NavLink
+                onClick={() => setResNavbar(false)}
                 className={({ isActive }) =>
                   `transition-transform duration-300 group inline-block text-[24px] uppercase ${
                     isActive ? "text-red-500" : "text-white"
@@ -270,6 +273,7 @@ const Header = () => {
             </li>
             <li className="pb-[20px]">
               <NavLink
+                onClick={() => setResNavbar(false)}
                 className={({ isActive }) =>
                   `transition-transform duration-300 group inline-block text-[24px] uppercase ${
                     isActive ? "text-red-500" : "text-white"
@@ -284,6 +288,7 @@ const Header = () => {
             </li>
             <li className="pb-[20px]">
               <NavLink
+                onClick={() => setResNavbar(false)}
                 className={({ isActive }) =>
                   `transition-transform duration-300 group inline-block text-[24px] uppercase ${
                     isActive ? "text-red-500" : "text-white"
@@ -298,6 +303,7 @@ const Header = () => {
             </li>
             <li className="pb-[20px]">
               <NavLink
+                onClick={() => setResNavbar(false)}
                 className={({ isActive }) =>
                   `transition-transform duration-300 group inline-block text-[24px] uppercase ${
                     isActive ? "text-red-500" : "text-white"
@@ -319,7 +325,7 @@ const Header = () => {
           </a>
           <IoClose
             onClick={() => setResNavbar(false)}
-            className="absolute right-[15px] top-[30px] cursor-pointer text-[38px] text-red-600"
+            className="absolute right-[15px] sm:right-[35%] lg:right-[53%] top-[30px] cursor-pointer text-[38px] text-red-600"
           />
         </nav>
       </div>

@@ -157,7 +157,7 @@ const CarsPage = () => {
         </div>
       </div>
 
-      <div className="w-[1150px] min-h-[680px] flex flex-wrap pl-[15px] pt-[25px] gap-[15px] pb-[25px]">
+      <div className="w-[1150px] min-h-[680px] flex flex-wrap sm:justify-center justify-between pl-[15px] pt-[25px] gap-[15px] pb-[25px]">
         {loading ? (
           <p className="text-white">Yuklanmoqda...</p>
         ) : filteredCars.length === 0 ? (
