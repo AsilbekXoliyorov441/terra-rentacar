@@ -1,13 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 
-const SingleBlogPage = () => {
+const SingleBlogPage2 = () => {
   return (
     <div>
       <section className='bg-[#1E1F27] mx-auto'>
       <div className="text-white min-h-screen p-6">
       <div className='mb-20'>  
-      <NavLink to="/" className='text-[#8FA5A9]'>Luxory Cars for Dubai / Blog / Top 5 Reasons to Rent a Car Dubai</NavLink>
+      <NavLink to="/" className='text-[#8FA5A9]'>Luxory Cars for Dubai / Blog / Top 5 Amazing Places for Photoshoots</NavLink>
       </div>  
       <div className="container mx-auto">
         <h1 className="text-2xl md:text-5xl font-bold mb-12">
@@ -18,7 +18,7 @@ const SingleBlogPage = () => {
         </p>
         <p className='pb-5'>Abu-Dhabi</p>
           <img
-            src="https://terra-rentacar.netlify.app/assets/blog-1-CqRaJa1U.jpg"
+            src="https://terra-rentacar.netlify.app/assets/blog-2-BV6fNMEe.jpg"
             alt="Image of Abu Dhabi"
             loading='lazy'
             className="w-full mb-5 md:w-full h-[500px]"
@@ -33,4 +33,4 @@ const SingleBlogPage = () => {
   );
 }
 
-export default SingleBlogPage
+export default SingleBlogPage2

@@ -19,7 +19,7 @@ const BlogPage = () => {
         <p className="mb-3 text-[20px] font-normal text-white max-w-6xl">One of the main reasons to hire a car in Dubai is the quality of the UAE roads. According to the World Economic Forum, the Emirates belong to the top seven countries with the most exemplary road infrastructure.</p>
      <div className='flex items-end justify-between'>
       <p className='text-white pt-7'>25 Seb 2022</p>
-      <NavLink to="/singleblogpage">
+      <NavLink to="/blog/singleblog">
       <i style={{color: "white", fontSize: "30px"}} className="fa-solid fa-circle-chevron-right"></i>
       </NavLink>
      </div>
@@ -33,9 +33,9 @@ const BlogPage = () => {
 </p>
      <div className='flex items-end justify-between'>
       <p className='text-white pt-7'>11 Feb 2022</p>
-      <Link to="/singleblogpage">
+      <NavLink to="/blog/singleblog2">
       <i style={{color: "white", fontSize: "30px"}} className="fa-solid fa-circle-chevron-right"></i>
-      </Link>
+      </NavLink>
      </div>
      </div>
      </a>
@@ -47,9 +47,9 @@ const BlogPage = () => {
 </p>
      <div className='flex items-end justify-between'>
       <p className='text-white pt-7'>11 Feb 2022</p>
-      <Link to="/singleblogpage">
+      <NavLink to="/blog/singleblog3">
       <i style={{color: "white", fontSize: "30px"}} className="fa-solid fa-circle-chevron-right"></i>
-      </Link>
+      </NavLink>
      </div>
      </div>
      </a>

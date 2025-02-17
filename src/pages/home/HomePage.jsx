@@ -19,6 +19,7 @@ import { translations } from "../../data";
 import Homecars from "../../components/home-cars/Homecars";
 import Follows from './../../components/Follows/Follows';
 import BrandsPage from "../brands/BrandsPage";
+import Locations from "../../components/Locations/Locations";
 
 
 const HomePage = () => {
@@ -317,6 +318,9 @@ const HomePage = () => {
       </section>
       <section id="follow">
         <Follows />
+      </section>
+      <section id="locations">
+        <Locations />
       </section>
     </main>
   );

@@ -21,20 +21,30 @@ function Locations() {
   return (
     <div>
         <section id='locations' className='container max-w-screen mx-auto py-8 bg-[#1E1F27]'>
-          <div className='max-w-[1200px] mx-auto px-5 '>  
-          <div className='flex gap-10 mb-5'>
-          <h1 className='text-white text-3xl'>LOCATION</h1>
-          <h1 className='text-white text-3xl'>CITY</h1>
-          </div> 
+          <div className='max-w-[1200px] mx-auto px-5'>  
+          <div className='flex gap-8'> 
           <div className='flex flex-col gap-2'>
+          <h1 className='text-white text-3xl pb-4'>LOCATION</h1>
+            {
+              locations.map((location) => (
+                <div key={location?.id}>
+                        <p className='text-[#A5A593] flex'>{location?.text}</p>
+                        <p className='text-[#A5A593] flex'>{location?.name}</p>
+                    </div>
+                ))
+              }
+          </div>
+          <div className='flex flex-col gap-2'>
+          <h1 className='text-white text-3xl pb-4'>CITY</h1>
             {
                 locations.map((location) => (
-                    <div className='flex' key={location?.id}>
+                    <div key={location?.id}>
                         <p className='text-[#A5A593] flex'>{location?.text}</p>
-                        <p className='text-[#A5A593]'>{location?.city}</p>
+                        <p className='text-[#A5A593] flex'>{location?.name}</p>
                     </div>
                 ))
             }
+          </div>
           </div>
           </div>
         </section>
