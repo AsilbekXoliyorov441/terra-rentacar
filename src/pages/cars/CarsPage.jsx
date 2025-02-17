@@ -15,7 +15,7 @@ const CarsPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const [searchParams] = useSearchParams(); 
+  const [searchParams] = useSearchParams();
 
   // Ma'lumotlarni yuklash
   useEffect(() => {
@@ -73,7 +73,6 @@ const CarsPage = () => {
     setFilteredCars(filtered);
   }, [searchParams, cars]);
 
-
   const filterUniqueByTitle = (data) => {
     const uniqueTitles = new Set();
     return data.filter((item) => {
@@ -84,7 +83,6 @@ const CarsPage = () => {
       return false;
     });
   };
-  
 
   // Brendni tanlash
   const handleBrandChange = (brandId) => {
@@ -143,46 +141,45 @@ const CarsPage = () => {
         </h2>
         <hr className="text-[#d6d1d1] mt-[25px]" />
 
-  {/* Kategoriya filtri */}
-<form>
-  <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
-  <div className="flex flex-col gap-[10px]">
-    {categories.map((item) => (
-      <div
-        key={item.id}
-        className="flex items-center text-[#fff] gap-[15px]"
-      >
-        <input
-          type="checkbox"
-          checked={selectedCategories.includes(item.id)}
-          onChange={() => handleCategoryChange(item.id)}
-        />
-        <p className="uppercase">{item.name_en}</p>
-      </div>
-    ))}
-  </div>
-</form>
+        {/* Kategoriya filtri */}
+        <form>
+          <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
+          <div className="flex flex-col gap-[10px]">
+            {categories.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center text-[#fff] gap-[15px]"
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.includes(item.id)}
+                  onChange={() => handleCategoryChange(item.id)}
+                />
+                <p className="uppercase">{item.name_en}</p>
+              </div>
+            ))}
+          </div>
+        </form>
 
-<hr className="text-[#d6d1d1] mt-[25px]" />
+        <hr className="text-[#d6d1d1] mt-[25px]" />
 
-{/* Brend filtri */}
-<form>
-  <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
-  {filterUniqueByTitle(brands).map((item) => (
-    <div
-      key={item.id}
-      className="flex items-center text-[#fff] gap-[15px]"
-    >
-      <input
-        type="checkbox"
-        checked={selectedBrands.includes(item.id)}
-        onChange={() => handleBrandChange(item.id)}
-      />
-      <p className="uppercase">{item.title}</p>
-    </div>
-  ))}
-</form>
-
+        {/* Brend filtri */}
+        <form>
+          <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
+          {filterUniqueByTitle(brands).map((item) => (
+            <div
+              key={item.id}
+              className="flex items-center text-[#fff] gap-[15px]"
+            >
+              <input
+                type="checkbox"
+                checked={selectedBrands.includes(item.id)}
+                onChange={() => handleBrandChange(item.id)}
+              />
+              <p className="uppercase">{item.title}</p>
+            </div>
+          ))}
+        </form>
 
         {/* Model filtri */}
         <form>
@@ -218,45 +215,48 @@ const CarsPage = () => {
         </div>
       </div>
 
-      {/* Mashinalarni ko'rsatish */}
       <div className="w-[1150px] min-h-[680px] flex flex-wrap pl-[15px] pt-[25px] gap-[15px] pb-[25px]">
-  {loading ? (
-    <p className="text-white">Yuklanmoqda...</p>
-  ) : filteredCars.length === 0 ? (
-    <p className="text-white text-center w-full text-lg">Mos keladigan mashina topilmadi</p>
-  ) : (
-    filteredCars.map((item) => (
-      <div
-        key={item.id}
-        className="w-[310px] h-[430px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
-      >
-        <img
-          src={`https://realauto.limsa.uz/api/uploads/images/${item?.car_images[0]?.image?.src}`}
-          alt="Car"
-          className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105"
-        />
-        <h3 className="text-white text-start text-[20px] mt-4">
-          {item?.brand?.title} <span className="pl-[10px]">{item?.model?.name}</span>
-        </h3>
-        <hr className="w-full my-[15px] text-[#fff]" />
-        <h2 className="text-white text-[20px]">
-          AED {item.price_in_aed} /{" "}
-          <span className="text-gray-500 text-[17px]">{item.price_in_aed_sale}</span>
-        </h2>
-        <span className="text-gray-500 pl-[10px]">per day</span>
-        <div className="w-full flex justify-center gap-[25px] items-center mt-[5px]">
-          <button className="bg-[#00C600] px-[20px] flex gap-1.5 items-center py-[10px] text-white rounded-[5px]">
-            <FaWhatsapp /> Whatsapp
-          </button>
-          <button className="bg-[#2727E0] px-[20px] py-[10px] flex gap-1.5 items-center text-white rounded-[5px]">
-            <RiTelegramFill /> Telegram
-          </button>
-        </div>
+        {loading ? (
+          <p className="text-white">Yuklanmoqda...</p>
+        ) : filteredCars.length === 0 ? (
+          <p className="text-white text-center w-full text-lg">
+            Mos keladigan mashina topilmadi
+          </p>
+        ) : (
+          filteredCars.map((item) => (
+            <div
+              key={item.id}
+              className="w-[310px] h-[430px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+            >
+              <img
+                src={`https://realauto.limsa.uz/api/uploads/images/${item?.car_images[0]?.image?.src}`}
+                alt="Car"
+                className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105"
+              />
+              <h3 className="text-white text-start text-[20px] mt-4">
+                {item?.brand?.title}{" "}
+                <span className="pl-[10px]">{item?.model?.name}</span>
+              </h3>
+              <hr className="w-full my-[15px] text-[#fff]" />
+              <h2 className="text-white text-[20px]">
+                AED {item.price_in_aed} /{" "}
+                <span className="text-gray-500 text-[17px]">
+                  {item.price_in_aed_sale}
+                </span>
+              </h2>
+              <span className="text-gray-500 pl-[10px]">per day</span>
+              <div className="w-full flex justify-center gap-[25px] items-center mt-[5px]">
+                <button className="bg-[#00C600] px-[20px] flex gap-1.5 items-center py-[10px] text-white rounded-[5px]">
+                  <FaWhatsapp /> Whatsapp
+                </button>
+                <button className="bg-[#2727E0] px-[20px] py-[10px] flex gap-1.5 items-center text-white rounded-[5px]">
+                  <RiTelegramFill /> Telegram
+                </button>
+              </div>
+            </div>
+          ))
+        )}
       </div>
-    ))
-  )}
-</div>
-
     </div>
   );
 };
