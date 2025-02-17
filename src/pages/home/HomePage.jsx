@@ -110,7 +110,7 @@ const HomePage = () => {
         </Swiper>
       </section>
       <section id="brands">
-        <BrandsPage/>
+        <BrandsPage />
       </section>
       <section id="cars">
         <Homecars />
@@ -149,22 +149,25 @@ const HomePage = () => {
       </section>
       <section
         id="sports-car"
-        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[100px] lg:pb-[200px] xl:pb-[300px]"
+        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[100px] lg:pb-[100px] xl:pb-[100px]"
       >
         <img
           className="hidden md:w-[300px] lg:w-[350px] xl:w-[400px] md:block absolute top-0  right-0"
           src="/home/sport-car-left.png"
           alt="sport-car-left"
         />
-        <iframe
-          className="hidden h-[400px] xl:h-[450px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:block lg:absolute left-0 "
-          src="https://www.youtube.com/embed/rsHmvxJ86PA?si=IV1NlzM7QxBEHYow"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
+        <div className="hidden h-[400px] xl:h-[450px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:inline-block lg:absolute z-30">
+          <iframe
+            className="w-full h-full "
+            src="https://www.youtube.com/embed/rsHmvxJ86PA?si=IV1NlzM7QxBEHYow"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+
         <div className="container px-[20px]  gap-[20px]  flex flex-col md:flex-row md:justify-end mx-auto relative z-10">
           <iframe
             className=" w-full lg:hidden"
@@ -176,7 +179,7 @@ const HomePage = () => {
             referrerpolicy="strict-origin-when-cross-origin"
             allowfullscreen
           ></iframe>
-          <div className=" lg:w-[40%]  mx-auto text-center md:mx-0 md:text-left self-right">
+          <div className=" lg:w-[40%]   mx-auto text-center md:mx-0 md:text-left self-right">
             <h1 className="text-white text-[28px] md:text-[42px] leading-[40px] mb-[20px]">
               {translations[language]?.sportsCarRental ||
                 translations.en.sportsCarRental}
