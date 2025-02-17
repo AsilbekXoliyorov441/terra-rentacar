@@ -230,11 +230,26 @@ body {
     }
   }
 }
+<<<<<<< HEAD
 
 .brand-img:hover{
    transition: 0.4s;
     filter: drop-shadow(1px 1px 2px white);
 }
+=======
+.contacts{
+  background-image: url("../src/assets/contactcover-D0KNkhkW.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  opacity: 1.1;       
+  top: 0;               
+  
+  object-fit: cover;
+}
+
+>>>>>>> e2fadecae475348815a3fea502429a27242a0f80
 
 
 
