@@ -61,7 +61,7 @@ const CarsPage = () => {
   }, []);
 
   useEffect(() => {
-    if (!cars.length) return; // Agar mashinalar hali yuklanmagan bo'lsa, filtrni bajarmaslik
+    if (!cars.length) return; 
 
     const searchTerm = searchParams.get("search")?.toLowerCase() || ""; // Qidiruv so‘zini olish va kichik harfga o'tkazish
     const filtered = cars.filter(
@@ -232,6 +232,7 @@ const CarsPage = () => {
                 src={`https://realauto.limsa.uz/api/uploads/images/${item?.car_images[0]?.image?.src}`}
                 alt="Car"
                 className="w-[90%] max-w-[100%] h-[200px] max-h-[200px] object-cover m-auto mt-[25px] rounded-lg cursor-pointer transition-transform transform hover:scale-105"
+                onClick={() => navigate(`/cars/${item.id}`, { state: { car: item } })}
               />
               <h3 className="text-white text-start text-[20px] mt-4">
                 {item?.brand?.title}{" "}
