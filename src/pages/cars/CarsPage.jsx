@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { data, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiTelegramFill } from "react-icons/ri";
+import { translations } from "../../data";
+import { useSelector } from "react-redux";
 
 const CarsPage = () => {
   const [cars, setCars] = useState([]);
@@ -16,6 +18,7 @@ const CarsPage = () => {
   const [openFilterMenu, setOpenFilterMenu] = useState(false);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const language = useSelector((state) => state.language.language);
 
   // Ma'lumotlarni yuklash
   useEffect(() => {
@@ -38,21 +41,6 @@ const CarsPage = () => {
       } catch (error) {
         console.error("Ma'lumotlarni yuklashda xatolik:", error);
       } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://realauto.limsa.uz/api/cars");
-        setCars(response?.data?.data || []);
-        setLoading(false);
-      } catch (error) {
-        console.error("Ma'lumotlarni yuklashda xatolik:", error);
         setLoading(false);
       }
     };
@@ -105,23 +93,34 @@ const CarsPage = () => {
 
   const applyFilter = () => {
     let filtered = cars;
-
+  
     // 🔹 Kategoriya bo'yicha filter
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((car) =>
         selectedCategories.includes(car.category_id)
       );
     }
-
+  
     // 🔹 Brend bo'yicha filter
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((car) =>
         selectedBrands.includes(car.brand_id)
       );
     }
-
+  
+    // 🔹 Model bo'yicha filter
+    if (selectedModel) {
+      filtered = filtered.filter((car) => car.model.name === selectedModel);
+    }
+  
     setFilteredCars(filtered);
   };
+  
+  // 🔹 Model tanlanganda avtomatik filter ishlashi uchun useEffect qo‘shamiz
+  useEffect(() => {
+    applyFilter();
+  }, [selectedModel]);
+  
 
   // Filtrlarni tozalash
   const handleReset = () => {
@@ -146,7 +145,7 @@ const CarsPage = () => {
             openFilterMenu
               ? "translate-x-[0%] z-30 top-[105px] w-full"
               : "top-[130px]"
-          } absolute left-0  translate-x-[-350%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
+          } absolute left-0  translate-x-[-360%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
         >
           <div
             className={`${
@@ -163,19 +162,21 @@ const CarsPage = () => {
             </button>
           </div>
           <h2 className="text-[#fff] text-[25px] font-[700]">
-            Filter By <br />
-            <span className="font-[350]">Offers</span>
+          {translations[language]?.filterby ||
+              translations.en.filterby} <br />
+            <span className="font-[350]">{translations[language]?.offers ||
+              translations.en.offers}</span>
           </h2>
           <hr className="text-[#d6d1d1] mt-[25px]" />
 
           <form>
-            <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
+            <p className="text-[#fff] mt-[20px] mb-[20px]">
+            {translations[language]?.cartype ||
+              translations.en.cartype}
+            </p>
             <div className="flex flex-col gap-[10px]">
-              {categories.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center text-[#fff] gap-[15px]"
-                >
+              {[...new Map(categories.map(item => [item.name_en, item])).values()].map((item) => (
+                <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
                   <input
                     type="checkbox"
                     checked={selectedCategories.includes(item.id)}
@@ -190,12 +191,12 @@ const CarsPage = () => {
           <hr className="text-[#d6d1d1] mt-[25px]" />
 
           <form>
-            <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
-            {brands.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center text-[#fff] gap-[15px]"
-              >
+            <p className="text-[#fff] mt-[20px] mb-[20px]">
+            {translations[language]?.brand ||
+              translations.en.brand}
+            </p>
+            {[...new Map(brands.map(item => [item.title, item])).values()].map((item) => (
+              <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
                 <input
                   type="checkbox"
                   checked={selectedBrands.includes(item.id)}
@@ -205,23 +206,32 @@ const CarsPage = () => {
               </div>
             ))}
           </form>
-          <p className="text-[#fff] mt-[20px] mb-[20px]">Model</p>
+
+          <p className="text-[#fff] mt-[20px] mb-[20px]">
+          {translations[language]?.model ||
+              translations.en.model}
+          </p>
           <select
-            name=""
-            id=""
-            className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
-          >
-            {cars.map((item) => (
-              <option value="">{item?.model?.name}</option>
-            ))}
-          </select>
+  className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
+  value={selectedModel}
+  onChange={(e) => setSelectedModel(e.target.value)}
+>
+  <option value="">Barcha modelllar</option>
+  {[...new Map(cars.map(item => [item.model.name, item])).values()].map((item) => (
+    <option key={item.model.name} value={item.model.name}>
+      {item.model.name}
+    </option>
+  ))}
+</select>
+
 
           <div className="w-full mt-[25px] flex gap-[25px] justify-between">
             <button
               className="pt-[10px] pb-[10px] pl-[25px] pr-[25px] text-[#fff] border-2 border-white rounded-[4px] cursor-pointer"
               onClick={handleReset}
             >
-              Reset
+              {translations[language]?.reset ||
+              translations.en.reset}
             </button>
             <button
               className="pt-[10px] pb-[10px] pl-[35px] pr-[25px] bg-[#009A00] rounded-[4px] text-[#fff] cursor-pointer"
@@ -230,7 +240,8 @@ const CarsPage = () => {
                 setOpenFilterMenu(false);
               }}
             >
-              Apply filter
+               {translations[language]?.applyfilter ||
+              translations.en.applyfilter}
             </button>
           </div>
         </div>
@@ -241,13 +252,15 @@ const CarsPage = () => {
               className="text-white text-[12px] sm:text-[14px] md:text-[16px] "
               href="/"
             >
-              Luxury Cars for Rent in Dubai /
+               {translations[language]?.link1 ||
+              translations.en.link1} /
             </a>
             <a
               className="text-white text-[12px] sm:text-[14px] md:text-[16px]"
               href="/cars"
             >
-              Hire the latest supercar
+               {translations[language]?.link2 ||
+              translations.en.link2}
             </a>
           </div>
           <div className=" min-h-[680px] flex flex-wrap justify-center sm:justify-between  pt-[25px] gap-[15px] pb-[25px]">
