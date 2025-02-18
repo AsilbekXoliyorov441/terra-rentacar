@@ -109,7 +109,7 @@ const HomePage = () => {
         </Swiper>
       </section>
       
-      <LoadingAnimation/>
+      {/* <LoadingAnimation/> */}
 
       <section id="brands">
         <BrandsPage />
