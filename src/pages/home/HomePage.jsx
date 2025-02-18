@@ -18,6 +18,7 @@ import Homecars from "../../components/home-cars/Homecars";
 import Follows from './../../components/Follows/Follows';
 import BrandsPage from "../brands/BrandsPage";
 import Locations from "../../components/Locations/Locations";
+import LoadingAnimation from "../../components/loading";
 
 
 const HomePage = () => {
@@ -107,6 +108,9 @@ const HomePage = () => {
           ))}
         </Swiper>
       </section>
+      
+      <LoadingAnimation/>
+
       <section id="brands">
         <BrandsPage />
       </section>
@@ -204,7 +208,7 @@ const HomePage = () => {
             alt="super-car"
           />
         </div>
-        <div className="pt-[40px] text-center pb-[30px] md:pb-[0] pl-[30px]">
+        <div className="pt-[40px]  pb-[30px] md:pb-[0] pl-[30px]">
           <h1 className="text-white text-[28px] sm:text-[32px] font-[500] mb-[5px] md:text-[32px] lg:text-[38px] xl:text-[42px]">
             {translations[language]?.superCarRental ||
               translations.en.superCarRental}
