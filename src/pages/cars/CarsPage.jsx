@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { data, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiTelegramFill } from "react-icons/ri";
