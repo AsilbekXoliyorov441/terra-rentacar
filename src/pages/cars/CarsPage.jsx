@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { data, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiTelegramFill } from "react-icons/ri";
@@ -38,21 +38,6 @@ const CarsPage = () => {
       } catch (error) {
         console.error("Ma'lumotlarni yuklashda xatolik:", error);
       } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://realauto.limsa.uz/api/cars");
-        setCars(response?.data?.data || []);
-        setLoading(false);
-      } catch (error) {
-        console.error("Ma'lumotlarni yuklashda xatolik:", error);
         setLoading(false);
       }
     };
@@ -105,23 +90,34 @@ const CarsPage = () => {
 
   const applyFilter = () => {
     let filtered = cars;
-
+  
     // 🔹 Kategoriya bo'yicha filter
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((car) =>
         selectedCategories.includes(car.category_id)
       );
     }
-
+  
     // 🔹 Brend bo'yicha filter
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((car) =>
         selectedBrands.includes(car.brand_id)
       );
     }
-
+  
+    // 🔹 Model bo'yicha filter
+    if (selectedModel) {
+      filtered = filtered.filter((car) => car.model.name === selectedModel);
+    }
+  
     setFilteredCars(filtered);
   };
+  
+  // 🔹 Model tanlanganda avtomatik filter ishlashi uchun useEffect qo‘shamiz
+  useEffect(() => {
+    applyFilter();
+  }, [selectedModel]);
+  
 
   // Filtrlarni tozalash
   const handleReset = () => {
@@ -171,11 +167,8 @@ const CarsPage = () => {
           <form>
             <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
             <div className="flex flex-col gap-[10px]">
-              {categories.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-center text-[#fff] gap-[15px]"
-                >
+              {[...new Map(categories.map(item => [item.name_en, item])).values()].map((item) => (
+                <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
                   <input
                     type="checkbox"
                     checked={selectedCategories.includes(item.id)}
@@ -191,11 +184,8 @@ const CarsPage = () => {
 
           <form>
             <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
-            {brands.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center text-[#fff] gap-[15px]"
-              >
+            {[...new Map(brands.map(item => [item.title, item])).values()].map((item) => (
+              <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
                 <input
                   type="checkbox"
                   checked={selectedBrands.includes(item.id)}
@@ -205,16 +195,21 @@ const CarsPage = () => {
               </div>
             ))}
           </form>
+
           <p className="text-[#fff] mt-[20px] mb-[20px]">Model</p>
           <select
-            name=""
-            id=""
-            className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
-          >
-            {cars.map((item) => (
-              <option value="">{item?.model?.name}</option>
-            ))}
-          </select>
+  className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
+  value={selectedModel}
+  onChange={(e) => setSelectedModel(e.target.value)}
+>
+  <option value="">Barcha modelllar</option>
+  {[...new Map(cars.map(item => [item.model.name, item])).values()].map((item) => (
+    <option key={item.model.name} value={item.model.name}>
+      {item.model.name}
+    </option>
+  ))}
+</select>
+
 
           <div className="w-full mt-[25px] flex gap-[25px] justify-between">
             <button
