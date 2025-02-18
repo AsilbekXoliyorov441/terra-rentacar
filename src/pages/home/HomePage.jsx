@@ -32,7 +32,7 @@ const HomePage = () => {
   return (
     <main>
       <section id="hero" className="pt-[90px] pb-[90px]">
-        <div className="container px-[20px] mb-[40px] mx-auto">
+        <div className="container  px-[20px] mb-[40px] mx-auto">
           <h1 className="text-center font-[500] text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[40px] font-serif">
             {translations[language]?.heroTitle || translations?.en?.heroTitle}
           </h1>

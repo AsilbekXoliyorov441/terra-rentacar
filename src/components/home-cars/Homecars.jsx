@@ -25,7 +25,7 @@ const Homecars = () => {
     // if (error) return <p className="text-red-500 text-center">{error}</p>;
   return (
     <div className='conatiner'>
-     <div className="w-[1200px] min-h-[550px] m-auto flex justify-between gap-[25px]">
+     <div className="w-[1200px] min-h-[550px] m-auto flex-wrap flex justify-around gap-[25px]">
       {cars.length > 0 ? (
         cars.map((item) => (
           <div

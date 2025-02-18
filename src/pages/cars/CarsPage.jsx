@@ -85,20 +85,17 @@ const CarsPage = () => {
   };
 
   // Brendni tanlash
-  const handleBrandChange = (brandId) => {
-    setSelectedBrands((prev) =>
-      prev.includes(brandId)
-        ? prev.filter((id) => id !== brandId)
-        : [...prev, brandId]
+  const handleCategoryChange = (id) => {
+    setSelectedCategories((prev) =>
+      prev.includes(id) ? prev.filter((catId) => catId !== id) : [...prev, id]
     );
   };
 
-  // Kategoriyani tanlash
-  const handleCategoryChange = (categoryId) => {
-    setSelectedCategories((prev) =>
-      prev.includes(categoryId)
-        ? prev.filter((id) => id !== categoryId)
-        : [...prev, categoryId]
+  const handleBrandChange = (id) => {
+    setSelectedBrands((prev) =>
+      prev.includes(id)
+        ? prev.filter((brandId) => brandId !== id)
+        : [...prev, id]
     );
   };
 
@@ -107,23 +104,30 @@ const CarsPage = () => {
   };
 
   const applyFilter = () => {
-    const filtered = cars.filter(
-      (car) =>
-        (selectedBrands.length === 0 ||
-          selectedBrands.includes(car.brand.id)) &&
-        (selectedCategories.length === 0 ||
-          selectedCategories.includes(car.category.id)) &&
-        (selectedModel === "" || car.model.name === selectedModel)
-    );
+    let filtered = cars;
+
+    // 🔹 Kategoriya bo'yicha filter
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter((car) =>
+        selectedCategories.includes(car.category_id)
+      );
+    }
+
+    // 🔹 Brend bo'yicha filter
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter((car) =>
+        selectedBrands.includes(car.brand_id)
+      );
+    }
+
     setFilteredCars(filtered);
   };
 
   // Filtrlarni tozalash
   const handleReset = () => {
-    setSelectedBrands([]);
     setSelectedCategories([]);
-    setSelectedModel("");
-    setFilteredCars(cars);
+    setSelectedBrands([]);
+    setFilteredCars(cars); // Asl mashinalar ro'yxatini tiklash
   };
 
   const uniqueModels = [...new Set(cars.map((car) => car.model.name))];
@@ -142,7 +146,7 @@ const CarsPage = () => {
             openFilterMenu
               ? "translate-x-[0%] z-30 top-[105px] w-full"
               : "top-[130px]"
-          } absolute left-0  translate-x-[-200%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
+          } absolute left-0  translate-x-[-200%] lg:translate-x-0 translate-transform duration-500  lg:block w-[22%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
         >
           <div
             className={`${
@@ -222,7 +226,8 @@ const CarsPage = () => {
             <button
               className="pt-[10px] pb-[10px] pl-[35px] pr-[25px] bg-[#009A00] rounded-[4px] text-[#fff] cursor-pointer"
               onClick={() => {
-                applyFilter, setOpenFilterMenu(false);
+                applyFilter();
+                setOpenFilterMenu(false);
               }}
             >
               Apply filter
