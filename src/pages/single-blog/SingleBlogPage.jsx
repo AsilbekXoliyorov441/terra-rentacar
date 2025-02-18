@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 const SingleBlogPage = () => {
   return (
@@ -12,7 +12,10 @@ const SingleBlogPage = () => {
                 Luxory Cars for Dubai
               </NavLink>
               <Link to="/blog">/ Blog</Link>
-              <Link to="/blog/singleblog"> / Top 5 Reasons to Rent a Car Dubai</Link>
+              <Link to="/blog/singleblog">
+                {" "}
+                / Top 5 Reasons to Rent a Car Dubai
+              </Link>
             </div>
           </div>
           <div className="container mx-auto px-[20px]">
@@ -67,6 +70,6 @@ const SingleBlogPage = () => {
       </section>
     </div>
   );
-}
+};
 
-export default SingleBlogPage
+export default SingleBlogPage;
