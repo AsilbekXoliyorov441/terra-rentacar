@@ -36,6 +36,17 @@ export const translations = {
     aboutUsDesc: "We are a top luxury car rental company in the Emirates...",
     contactUs: "Contact Us",
     location: "LOCATION",
+    filterby: "Filter By",
+    offers : "Offers",
+    cartype : "Car type",
+    brand: "Brand",
+    model : "Model",
+    reset : "Reset",
+    applyfilter : "Apply filter",
+    link1: "Luxury Cars for Rent in Dubai ",
+    link2: "Hire the latest supercar",
+   
+
     navigation: {
       cars: "CARS",
       brand: "BRAND",
@@ -128,6 +139,17 @@ export const translations = {
       "Мы ведущая компания по аренде люксовых автомобилей в Эмиратах...",
     contactUs: "Свяжитесь с нами",
     location: "МЕСТОПОЛОЖЕНИЕ",
+    filterby : "Фильтровать по",
+    offers : "Предложения",
+    cartype : "Тип автомобиля",
+    brand: "Бренд",
+    model: "Модель",
+    reset : "Перезагрузить",
+    applyfilter: "Применить фильтр",
+    link1: "Аренда автомобилей класса люкс в Дубае",
+    link2: "Возьмите напрокат новейший суперкар",
+
+    
     navigation: {
       cars: "АВТОМОБИЛИ",
       brand: "БРЕНДЫ",

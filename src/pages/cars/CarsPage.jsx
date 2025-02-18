@@ -3,6 +3,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiTelegramFill } from "react-icons/ri";
+import { translations } from "../../data";
+import { useSelector } from "react-redux";
 
 const CarsPage = () => {
   const [cars, setCars] = useState([]);
@@ -16,6 +18,7 @@ const CarsPage = () => {
   const [openFilterMenu, setOpenFilterMenu] = useState(false);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const language = useSelector((state) => state.language.language);
 
   // Ma'lumotlarni yuklash
   useEffect(() => {
@@ -142,7 +145,7 @@ const CarsPage = () => {
             openFilterMenu
               ? "translate-x-[0%] z-30 top-[105px] w-full"
               : "top-[130px]"
-          } absolute left-0  translate-x-[-350%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
+          } absolute left-0  translate-x-[-360%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
         >
           <div
             className={`${
@@ -159,13 +162,18 @@ const CarsPage = () => {
             </button>
           </div>
           <h2 className="text-[#fff] text-[25px] font-[700]">
-            Filter By <br />
-            <span className="font-[350]">Offers</span>
+          {translations[language]?.filterby ||
+              translations.en.filterby} <br />
+            <span className="font-[350]">{translations[language]?.offers ||
+              translations.en.offers}</span>
           </h2>
           <hr className="text-[#d6d1d1] mt-[25px]" />
 
           <form>
-            <p className="text-[#fff] mt-[20px] mb-[20px]">Car type</p>
+            <p className="text-[#fff] mt-[20px] mb-[20px]">
+            {translations[language]?.cartype ||
+              translations.en.cartype}
+            </p>
             <div className="flex flex-col gap-[10px]">
               {[...new Map(categories.map(item => [item.name_en, item])).values()].map((item) => (
                 <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
@@ -183,7 +191,10 @@ const CarsPage = () => {
           <hr className="text-[#d6d1d1] mt-[25px]" />
 
           <form>
-            <p className="text-[#fff] mt-[20px] mb-[20px]">Brand</p>
+            <p className="text-[#fff] mt-[20px] mb-[20px]">
+            {translations[language]?.brand ||
+              translations.en.brand}
+            </p>
             {[...new Map(brands.map(item => [item.title, item])).values()].map((item) => (
               <div key={item.id} className="flex items-center text-[#fff] gap-[15px]">
                 <input
@@ -196,7 +207,10 @@ const CarsPage = () => {
             ))}
           </form>
 
-          <p className="text-[#fff] mt-[20px] mb-[20px]">Model</p>
+          <p className="text-[#fff] mt-[20px] mb-[20px]">
+          {translations[language]?.model ||
+              translations.en.model}
+          </p>
           <select
   className="w-[100%] h-[45px] bg-amber-50 outline rounded-[5px]"
   value={selectedModel}
@@ -216,7 +230,8 @@ const CarsPage = () => {
               className="pt-[10px] pb-[10px] pl-[25px] pr-[25px] text-[#fff] border-2 border-white rounded-[4px] cursor-pointer"
               onClick={handleReset}
             >
-              Reset
+              {translations[language]?.reset ||
+              translations.en.reset}
             </button>
             <button
               className="pt-[10px] pb-[10px] pl-[35px] pr-[25px] bg-[#009A00] rounded-[4px] text-[#fff] cursor-pointer"
@@ -225,7 +240,8 @@ const CarsPage = () => {
                 setOpenFilterMenu(false);
               }}
             >
-              Apply filter
+               {translations[language]?.applyfilter ||
+              translations.en.applyfilter}
             </button>
           </div>
         </div>
@@ -236,13 +252,15 @@ const CarsPage = () => {
               className="text-white text-[12px] sm:text-[14px] md:text-[16px] "
               href="/"
             >
-              Luxury Cars for Rent in Dubai /
+               {translations[language]?.link1 ||
+              translations.en.link1} /
             </a>
             <a
               className="text-white text-[12px] sm:text-[14px] md:text-[16px]"
               href="/cars"
             >
-              Hire the latest supercar
+               {translations[language]?.link2 ||
+              translations.en.link2}
             </a>
           </div>
           <div className=" min-h-[680px] flex flex-wrap justify-center sm:justify-between  pt-[25px] gap-[15px] pb-[25px]">
