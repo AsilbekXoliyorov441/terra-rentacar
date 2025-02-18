@@ -146,7 +146,7 @@ const CarsPage = () => {
             openFilterMenu
               ? "translate-x-[0%] z-30 top-[105px] w-full"
               : "top-[130px]"
-          } absolute left-0  translate-x-[-200%] lg:translate-x-0 translate-transform duration-500  lg:block w-[22%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
+          } absolute left-0  translate-x-[-350%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
         >
           <div
             className={`${
