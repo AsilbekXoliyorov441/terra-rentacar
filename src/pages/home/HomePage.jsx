@@ -147,14 +147,14 @@ const HomePage = () => {
       </section>
       <section
         id="sports-car"
-        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[100px] lg:pb-[100px] xl:pb-[100px]"
+        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[100px] lg:pb-[100px] xl:pb-[150px]"
       >
         <img
           className="hidden md:w-[300px] lg:w-[350px] xl:w-[400px] md:block absolute top-0  right-0"
           src="/home/sport-car-left.png"
           alt="sport-car-left"
         />
-        <div className="hidden h-[400px] xl:h-[450px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:inline-block lg:absolute z-30">
+        <div className="hidden h-[400px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:inline-block lg:absolute z-30">
           <iframe
             className="w-full h-full "
             src="https://www.youtube.com/embed/rsHmvxJ86PA?si=IV1NlzM7QxBEHYow"
