@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, data, useLocation } from "react-router-dom";
+import { Link, NavLink, data, useLocation, useNavigate } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
@@ -13,6 +13,19 @@ const Header = () => {
 
   const [brands, setBrands] = useState(null);
   const [resNavbar, setResNavbar] = useState(false);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault(); // 🚀 Sahifani qayta yuklashning oldini oladi
+
+    if (!searchTerm.trim()) {
+      navigate("/cars"); // 🏠 Agar input bo‘sh bo‘lsa, barcha mashinalarni ko‘rsatish uchun
+    } else {
+      navigate(`/cars?search=${encodeURIComponent(searchTerm)}`); // 🔗 Qidiruv natijalariga yo‘naltirish
+    }
+  };;
 
   const dispatch = useDispatch();
   const language = useSelector((state) => state?.language.language);
@@ -61,18 +74,19 @@ const Header = () => {
                 />
               </button>
             </div>
-            <form className="relative hidden xl:block  w-[350px] overflow-hidden rounded-[10px]">
-              <input
-                type="search"
-                className="search-input h-[50px] pl-[40px] pr-[10px]  w-full outline-hidden text-[18px] placeholder:text-gray-500"
-                placeholder="Search..."
-              />
-              <img
-                className="absolute top-[14px] left-[10px]"
-                src="/header/search-lang.png"
-                alt="search"
-              />
-            </form>
+            <form onChange={handleSearch} className="relative hidden xl:block w-[350px] overflow-hidden rounded-[10px]">
+      <input
+        type="search"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-input h-[50px] pl-[40px] pr-[10px] w-full outline-none text-[18px] placeholder:text-gray-500"
+        placeholder="Search..."
+      />
+      <button type="submit">
+        <img className="absolute top-[14px] left-[10px]" src="/header/search-lang.png" alt="search"  />
+      </button>
+    </form>
+
           </div>
           <NavLink className="w-[120px] inline-block" to="/">
             <img src="/header/logo-header.png" alt="logo-header" />

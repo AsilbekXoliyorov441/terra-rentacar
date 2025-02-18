@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LinkPass from "../../components/link-pass/LinkPass";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FaWhatsapp } from "react-icons/fa";
-import { RiTelegramFill } from "react-icons/ri";
 
 
 // Import Swiper styles
@@ -34,7 +32,7 @@ const HomePage = () => {
   return (
     <main>
       <section id="hero" className="pt-[90px] pb-[90px]">
-        <div className="container px-[20px] mb-[40px] mx-auto">
+        <div className="container  px-[20px] mb-[40px] mx-auto">
           <h1 className="text-center font-[500] text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[40px] font-serif">
             {translations[language]?.heroTitle || translations?.en?.heroTitle}
           </h1>
@@ -85,9 +83,9 @@ const HomePage = () => {
           modules={[Navigation]}
           className="mySwiper"
           breakpoints={{
-            640: { slidesPerView: 1 }, // sm: 1 ta slayd
-            1024: { slidesPerView: 3 }, // lg: 2 ta slayd
-            1280: { slidesPerView: 3 }, // xl: 3 ta slayd
+            640: { slidesPerView: 1 },
+            1024: { slidesPerView: 3 }, 
+            1280: { slidesPerView: 3 }, 
           }}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex - 1)}
         >
@@ -149,14 +147,14 @@ const HomePage = () => {
       </section>
       <section
         id="sports-car"
-        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[100px] lg:pb-[100px] xl:pb-[100px]"
+        className="bg-gray-950 relative pt-[60px] pb-[60px] md:pb-[100px] lg:pb-[100px] xl:pb-[150px]"
       >
         <img
           className="hidden md:w-[300px] lg:w-[350px] xl:w-[400px] md:block absolute top-0  right-0"
           src="/home/sport-car-left.png"
           alt="sport-car-left"
         />
-        <div className="hidden h-[400px] xl:h-[450px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:inline-block lg:absolute z-30">
+        <div className="hidden h-[400px] top-[60px]  md:mb-0 md:w-[55%] md:hidden lg:inline-block lg:absolute z-30">
           <iframe
             className="w-full h-full "
             src="https://www.youtube.com/embed/rsHmvxJ86PA?si=IV1NlzM7QxBEHYow"

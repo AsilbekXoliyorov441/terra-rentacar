@@ -24,9 +24,9 @@ const SingleCarPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
 
   const car = location.state?.car;
 

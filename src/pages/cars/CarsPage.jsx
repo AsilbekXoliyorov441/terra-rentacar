@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, data, useNavigate } from "react-router-dom";
+import { data, useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { FaWhatsapp } from "react-icons/fa";
 import { RiTelegramFill } from "react-icons/ri";
@@ -7,83 +7,130 @@ import { RiTelegramFill } from "react-icons/ri";
 const CarsPage = () => {
   const [cars, setCars] = useState([]);
   const [brands, setBrands] = useState([]);
-  const [models, setModels] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedModel, setSelectedModel] = useState("");
   const [filteredCars, setFilteredCars] = useState([]);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [openFilterMenu , setOpenFilterMenu] = useState(false);
+  const [openFilterMenu, setOpenFilterMenu] = useState(false);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
+  // Ma'lumotlarni yuklash
   useEffect(() => {
-    axios
-      .get("https://realauto.limsa.uz/api/cars")
-      .then((response) => {
-        setCars(response?.data?.data);
-        setFilteredCars(response?.data?.data);
-      })
-      .catch((error) => {
-        console.error("Mashinalarni olishda xatolik:", error);
-      });
+    const fetchData = async () => {
+      try {
+        const carsResponse = await axios.get(
+          "https://realauto.limsa.uz/api/cars"
+        );
+        const brandsResponse = await axios.get(
+          "https://realauto.limsa.uz/api/brands"
+        );
+        const categoriesResponse = await axios.get(
+          "https://realauto.limsa.uz/api/categories"
+        );
 
-    axios
-      .get("https://realauto.limsa.uz/api/brands")
-      .then((response) => {
-        setBrands(response?.data?.data);
-      })
-      .catch((error) => {
-        console.error("Brandlarni olishda xatolik:", error);
-      });
-
-    axios
-      .get("https://realauto.limsa.uz/api/categories")
-      .then((response) => {
-        setCategories(response?.data?.data);
+        setCars(carsResponse?.data?.data);
+        setFilteredCars(carsResponse?.data?.data);
+        setBrands(brandsResponse?.data?.data);
+        setCategories(categoriesResponse?.data?.data);
+      } catch (error) {
+        console.error("Ma'lumotlarni yuklashda xatolik:", error);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Kategoriyalarni olishda xatolik:", error);
-      });
+      }
+    };
+
+    fetchData();
   }, []);
 
-  const handleBrandChange = (brandId) => {
-    setSelectedBrands((prev) =>
-      prev.includes(brandId)
-        ? prev.filter((id) => id !== brandId)
-        : [...prev, brandId]
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://realauto.limsa.uz/api/cars");
+        setCars(response?.data?.data || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Ma'lumotlarni yuklashda xatolik:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (!cars.length) return;
+
+    const searchTerm = searchParams.get("search")?.toLowerCase() || ""; // Qidiruv so‘zini olish va kichik harfga o'tkazish
+    const filtered = cars.filter(
+      (car) =>
+        car.brand?.title?.toLowerCase().includes(searchTerm) ||
+        car.model?.name?.toLowerCase().includes(searchTerm)
+    );
+
+    setFilteredCars(filtered);
+  }, [searchParams, cars]);
+
+  const filterUniqueByTitle = (data) => {
+    const uniqueTitles = new Set();
+    return data.filter((item) => {
+      if (!uniqueTitles.has(item.title)) {
+        uniqueTitles.add(item.title);
+        return true;
+      }
+      return false;
+    });
+  };
+
+  // Brendni tanlash
+  const handleCategoryChange = (id) => {
+    setSelectedCategories((prev) =>
+      prev.includes(id) ? prev.filter((catId) => catId !== id) : [...prev, id]
     );
   };
 
-  const handleCategoryChange = (categoryId) => {
-    setSelectedCategories((prev) =>
-      prev.includes(categoryId)
-        ? prev.filter((id) => id !== categoryId)
-        : [...prev, categoryId]
+  const handleBrandChange = (id) => {
+    setSelectedBrands((prev) =>
+      prev.includes(id)
+        ? prev.filter((brandId) => brandId !== id)
+        : [...prev, id]
     );
+  };
+
+  const handleModelChange = (model) => {
+    setSelectedModel(model);
   };
 
   const applyFilter = () => {
     let filtered = cars;
-    if (selectedBrands.length > 0) {
-      filtered = filtered.filter((car) =>
-        selectedBrands.includes(car.brand.id)
-      );
-    }
+
+    // 🔹 Kategoriya bo'yicha filter
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((car) =>
-        selectedCategories.includes(car.category.id)
+        selectedCategories.includes(car.category_id)
+      );
+    }
+
+    // 🔹 Brend bo'yicha filter
+    if (selectedBrands.length > 0) {
+      filtered = filtered.filter((car) =>
+        selectedBrands.includes(car.brand_id)
       );
     }
 
     setFilteredCars(filtered);
   };
 
+  // Filtrlarni tozalash
   const handleReset = () => {
-    setSelectedBrands([]);
     setSelectedCategories([]);
-    setFilteredCars(cars);
+    setSelectedBrands([]);
+    setFilteredCars(cars); // Asl mashinalar ro'yxatini tiklash
   };
+
+  const uniqueModels = [...new Set(cars.map((car) => car.model.name))];
 
   return (
     <section id="cars" className="pt-[30px]  pb-[90px]">
@@ -101,11 +148,17 @@ const CarsPage = () => {
               : "top-[130px]"
           } absolute left-0  translate-x-[-350%] lg:translate-x-0 translate-transform duration-500  lg:block w-[25%]  bg-[#272933] pt-[35px] pl-[30px] pr-[30px] py-[15px]`}
         >
-          <div className={`${openFilterMenu ? "block" : "hidden"} flex items-start justify-between`}>
-            <img className="w-[60%]" src="/cars/TerraAvto-CveSQ9CU.png" alt="terra" />
-            <button
-            onClick={() => setOpenFilterMenu(false)}
-            >
+          <div
+            className={`${
+              openFilterMenu ? "block" : "hidden"
+            } flex items-start justify-between`}
+          >
+            <img
+              className="w-[60%]"
+              src="/cars/TerraAvto-CveSQ9CU.png"
+              alt="terra"
+            />
+            <button onClick={() => setOpenFilterMenu(false)}>
               <img src="/cars/close-toggle.svg" alt="close" />
             </button>
           </div>
@@ -172,7 +225,10 @@ const CarsPage = () => {
             </button>
             <button
               className="pt-[10px] pb-[10px] pl-[35px] pr-[25px] bg-[#009A00] rounded-[4px] text-[#fff] cursor-pointer"
-              onClick={() => {applyFilter , setOpenFilterMenu(false)}}
+              onClick={() => {
+                applyFilter();
+                setOpenFilterMenu(false);
+              }}
             >
               Apply filter
             </button>
