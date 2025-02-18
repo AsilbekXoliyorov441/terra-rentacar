@@ -28,8 +28,8 @@ const Homecars = () => {
   if (error) return <p className="text-red-500 text-center">Xatolik yuz berdi: {error.message}</p>;
 
   return (
-    <div className="container">
-      <div className="w-[1200px] min-h-[550px] m-auto flex-wrap flex justify-around gap-[25px]">
+    <div className="container mx-auto px-[20px]">
+      <div className="w-full min-h-[550px] m-auto flex-wrap flex justify-around gap-[25px]">
         {categories.map((category) => {
           const categoryCars = cars.filter(car => car.category_id === category.id).slice(0, 3);
 
