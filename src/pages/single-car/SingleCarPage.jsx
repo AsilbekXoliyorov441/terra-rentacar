@@ -66,7 +66,6 @@ const SingleCarPage = () => {
     const photoUrl = `https://api.telegram.org/bot${botToken}/sendPhoto`;
 
     try {
-      // Avval matnli xabarni yuboramiz
       const response = await fetch(messageUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
