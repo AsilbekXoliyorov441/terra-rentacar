@@ -125,7 +125,7 @@ const SingleCarPage = () => {
       <div className="container gap-[50px] min-h-[650px] mx-auto p-5 text-white my-[50px]">
         <div className="w-full h-auto flex flex-col lg:flex-row gap-[30px] justify-between">
           {/* Chap tomon - Slayder */}
-          <div className="max-w-[550px] w-full py-[50px]">
+          <div className="max-w-[650px] w-full py-[50px]">
             <h1 className="text-[45px] font-bold uppercase my-[10px]">
               {car.brand.title} {car.model.name} ({car.color})
             </h1>
@@ -246,43 +246,43 @@ const SingleCarPage = () => {
             <hr className="text-[#fff] my-[30px]" />
 
             <div className="w-full flex justify-between flex-wrap  md:flex-nowrap lg:flex-wrap gap-y-[25px]">
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <MdCalendarToday className="text-[25px] gap-[10px]" />
                 {car.year}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <TfiTimer className="text-[25px] gap-[10px]" />
                 {car.seconds}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <MdOutlineSpeed className="text-[25px] gap-[10px]" />
                 {car.max_speed}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <LiaUserSlashSolid className="text-[25px] gap-[10px]" />
                 {car.max_people}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <VscSymbolColor className="text-[25px] gap-[10px]" />
                 {car.color}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <PiEngine className="text-[25px] gap-[10px]" />
                 {car.motor}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <PiPianoKeys className="text-[25px] gap-[10px]" />
                 {car.transmission}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <TbCar4Wd className="text-[25px] gap-[10px]" />
                 {car.drive_side}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <LuFuel className="text-[25px] gap-[10px]" />
                 {car.petrol}
               </div>
-              <div className="w-[100px] flex flex-col justify-center items-center">
+              <div className="w-[150px] flex flex-col justify-center items-center">
                 <IoCarSportOutline className="text-[25px] gap-[10px]" />
                 {car?.city?.name} Cars
               </div>
