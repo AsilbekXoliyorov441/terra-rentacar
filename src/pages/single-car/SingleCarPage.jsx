@@ -24,12 +24,7 @@ const SingleCarPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const { pathname } = useLocation();
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [pathname]);
-
   const car = location.state?.car;
-
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -47,7 +42,6 @@ const SingleCarPage = () => {
     const botToken = "7815564274:AAHyAdtGAmgvVSFUXUblgLPF4jhJLmY_7rI";
     const chatId = "6992354984";
 
-    // Telegramga yuboriladigan matn
     const text = `
   📝 <b>Yangi buyurtma!</b> 
   
@@ -55,7 +49,6 @@ const SingleCarPage = () => {
   📞 <b>Telefon:</b> ${formData.phone} 
   📅 <b>Davr:</b> ${formData.period} kun
   📌 <b>Tafsilotlar:</b> ${formData.details}
-  
   🚗 <b>Mashina:</b> ${car.brand.title} ${car.model.name} (${car.color})
   🎂 <b>Yili:</b> ${car.year}
   ⏳ <b>Tezlanish:</b> ${car.seconds} sek
@@ -115,7 +108,6 @@ const SingleCarPage = () => {
       <p className="text-white text-center">Mashina ma'lumoti topilmadi!</p>
     );
 
-  // API dan kelgan barcha rasmlarni arrayga yig‘amiz
   const images = car.car_images.map(
     (img) => `https://realauto.limsa.uz/api/uploads/images/${img.image.src}`
   );
@@ -136,7 +128,7 @@ const SingleCarPage = () => {
                 type: "fade",
                 heightRatio: 0.5,
                 pagination: false,
-                arrows: true, // Chapga-o‘ngga o'tish tugmalari bor
+                arrows: true,
                 cover: true,
                 isNavigation: false,
               }}
