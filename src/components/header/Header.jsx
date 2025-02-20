@@ -97,7 +97,7 @@ const Header = () => {
         <form
           onChange={handleSearch}
           className={`absolute xl:static left-0 right-0 mx-auto transition-all duration-300 justify-center ${
-            searchOpen ? "top-[70px] opacity-100 left-0" : "top-[-100px] opacity-0"
+            searchOpen ? "top-[70px] w-[300px]  opacity-100 left-[-220%]" : "top-[-100px] opacity-0"
           } xl:opacity-100 xl:top-0 xl:block w-[350px] overflow-hidden rounded-[10px]`}
         >
           <input
