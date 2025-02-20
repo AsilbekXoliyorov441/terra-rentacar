@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, data, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  data,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
@@ -11,8 +17,6 @@ import { translations } from "../../data";
 
 const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
-
-
 
   const [brands, setBrands] = useState(null);
   const [resNavbar, setResNavbar] = useState(false);
@@ -28,7 +32,7 @@ const Header = () => {
     } else {
       navigate(`/cars?search=${encodeURIComponent(searchTerm)}`); // 🔗 Qidiruv natijalariga yo‘naltirish
     }
-  };;
+  };
 
   const dispatch = useDispatch();
   const language = useSelector((state) => state?.language.language);
@@ -54,69 +58,71 @@ const Header = () => {
     <>
       <header className="navbar relative z-40 h-[100px] flex items-center sm: flex-wrap justify-center">
         <div className="container mx-auto px-[20px] flex justify-between items-center gap-[20px]">
-        <div className="flex items-center gap-[10px]">
-      {/* Language buttons */}
-      <div className="flex gap-[5px] items-center">
-        <button
-          onClick={() => dispatch(setLanguage("en"))}
-          className="w-[30px] h-[30px] cursor-pointer"
-        >
-          <img
-            className="w-full sm:w-auto" // sm: da ham ko'rinadi
-            src="/header/en-lang.png"
-            alt="en-lang"
-          />
-        </button>
-        <button
-          onClick={() => dispatch(setLanguage("ru"))}
-          className="w-[30px] h-[30px] cursor-pointer"
-        >
-          <img
-            className="w-full sm:w-auto" // sm: da ham ko'rinadi
-            src="/header/rus-lang.png"
-            alt="ru-lang"
-          />
-        </button>
-      </div>
+          <div className="flex items-center gap-[10px]">
+            {/* Language buttons */}
+            <div className="flex gap-[5px] items-center">
+              <button
+                onClick={() => dispatch(setLanguage("en"))}
+                className="w-[30px] h-[30px] cursor-pointer"
+              >
+                <img
+                  className="w-full sm:w-auto" // sm: da ham ko'rinadi
+                  src="/header/en-lang.png"
+                  alt="en-lang"
+                />
+              </button>
+              <button
+                onClick={() => dispatch(setLanguage("ru"))}
+                className="w-[30px] h-[30px] cursor-pointer"
+              >
+                <img
+                  className="w-full sm:w-auto" // sm: da ham ko'rinadi
+                  src="/header/rus-lang.png"
+                  alt="ru-lang"
+                />
+              </button>
+            </div>
 
-      {/* Search input */}
-      <div className="relative">
-        {/* Search button (faqat sm: da chiqadi) */}
-        <button
-          onClick={() => setSearchOpen(!searchOpen)}
-          className="xl:hidden block p-2  rounded-full"
-        >
-          <img
-            src="/header/search-lang.png"
-            alt="search"
-            className="w-[20px] h-[20px]"
-          />
-        </button>
+            {/* Search input */}
+            <div className="relative">
+              {/* Search button (faqat sm: da chiqadi) */}
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="xl:hidden block p-2  rounded-full"
+              >
+                <img
+                  src="/header/search-lang.png"
+                  alt="search"
+                  className="w-[20px] h-[20px]"
+                />
+              </button>
 
-        {/* Search form */}
-        <form
-          onChange={handleSearch}
-          className={`absolute xl:static left-0 right-0 mx-auto transition-all duration-300 justify-center ${
-            searchOpen ? "top-[70px] opacity-100 left-0" : "top-[-100px] opacity-0"
-          } xl:opacity-100 xl:top-0 xl:block w-[350px] overflow-hidden rounded-[10px]`}
-        >
-          <input
-            type="search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input h-[50px] pl-[40px] pr-[10px] w-full outline-none text-[18px] placeholder:text-gray-500"
-            placeholder="Search..."
-          />
-          <button type="submit">
-            <img
-              className="absolute top-[14px] left-[10px]"
-              src="/header/search-lang.png"
-              alt="search"
-            />
-          </button>
-        </form>
-      </div>
-    </div>
+              {/* Search form */}
+              <form
+                onChange={handleSearch}
+                className={`absolute xl:static left-0 right-0 mx-auto transition-all duration-300 justify-center ${
+                  searchOpen
+                    ? "top-[70px] opacity-100 left-0"
+                    : "top-[-100px] opacity-0"
+                } xl:opacity-100 xl:top-0 xl:block w-[350px] overflow-hidden rounded-[10px]`}
+              >
+                <input
+                  type="search"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input h-[50px] pl-[40px] pr-[10px] w-full outline-none text-[18px] placeholder:text-gray-500"
+                  placeholder="Search..."
+                />
+                <button type="submit">
+                  <img
+                    className="absolute top-[14px] left-[10px]"
+                    src="/header/search-lang.png"
+                    alt="search"
+                  />
+                </button>
+              </form>
+            </div>
+          </div>
           <NavLink className="w-[120px] inline-block" to="/">
             <img src="/header/logo-header.png" alt="logo-header" />
           </NavLink>
