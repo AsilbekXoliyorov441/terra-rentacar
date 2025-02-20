@@ -97,32 +97,30 @@ const Header = () => {
                 />
               </button>
 
-              {/* Search form */}
-              <form
-                onChange={handleSearch}
-                className={`absolute xl:static left-0 right-0 mx-auto transition-all duration-300 justify-center ${
-                  searchOpen
-                    ? "top-[70px] opacity-100 left-0"
-                    : "top-[-100px] opacity-0"
-                } xl:opacity-100 xl:top-0 xl:block w-[350px] overflow-hidden rounded-[10px]`}
-              >
-                <input
-                  type="search"
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="search-input h-[50px] pl-[40px] pr-[10px] w-full outline-none text-[18px] placeholder:text-gray-500"
-                  placeholder="Search..."
-                />
-                <button type="submit">
-                  <img
-                    className="absolute top-[14px] left-[10px]"
-                    src="/header/search-lang.png"
-                    alt="search"
-                  />
-                </button>
-              </form>
-            </div>
-          </div>
+        {/* Search form */}
+        <form
+          onChange={handleSearch}
+          className={`absolute xl:static left-0 right-0 mx-auto transition-all duration-300 justify-center ${
+            searchOpen ? "top-[70px] w-[300px]  opacity-100 left-[-220%]" : "top-[-100px] opacity-0"
+          } xl:opacity-100 xl:top-0 xl:block w-[350px] overflow-hidden rounded-[10px]`}
+        >
+          <input
+            type="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input h-[50px] pl-[40px] pr-[10px] w-full outline-none text-[18px] placeholder:text-gray-500"
+            placeholder="Search..."
+          />
+          <button type="submit">
+            <img
+              className="absolute top-[14px] left-[10px]"
+              src="/header/search-lang.png"
+              alt="search"
+            />
+          </button>
+        </form>
+      </div>
+    </div>
           <NavLink className="w-[120px] inline-block" to="/">
             <img src="/header/logo-header.png" alt="logo-header" />
           </NavLink>
