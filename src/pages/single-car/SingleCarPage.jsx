@@ -24,9 +24,9 @@ const SingleCarPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
 
   const car = location.state?.car;
 
@@ -122,10 +122,10 @@ const SingleCarPage = () => {
 
   return (
     <section>
-      <div className="container w-[1200px] min-h-[650px] mx-auto p-5 text-white my-[50px]">
-        <div className="w-full h-auto flex justify-between">
+      <div className="container gap-[50px] min-h-[650px] mx-auto p-5 text-white my-[50px]">
+        <div className="w-full h-auto flex flex-col lg:flex-row gap-[30px] justify-between">
           {/* Chap tomon - Slayder */}
-          <div className="w-[550px] py-[50px]">
+          <div className="max-w-[550px] w-full py-[50px]">
             <h1 className="text-[45px] font-bold uppercase my-[10px]">
               {car.brand.title} {car.model.name} ({car.color})
             </h1>
@@ -207,7 +207,7 @@ const SingleCarPage = () => {
             </div>
           </div>
 
-          <div className="w-[580px] p-5 rounded-lg my-[50px] ">
+          <div className="p-5 rounded-lg my-[50px] ">
             <div className="w-full flex flex-wrap justify-between items-center  ">
               <h2 className="w-[240px] text-[22px] font-[600]">
                 AED {car.price_in_aed_sale}{" "}
@@ -245,7 +245,7 @@ const SingleCarPage = () => {
 
             <hr className="text-[#fff] my-[30px]" />
 
-            <div className="w-full flex flex-wrap gap-y-[25px]">
+            <div className="w-full flex justify-between flex-wrap  md:flex-nowrap lg:flex-wrap gap-y-[25px]">
               <div className="w-[100px] flex flex-col justify-center items-center">
                 <MdCalendarToday className="text-[25px] gap-[10px]" />
                 {car.year}
@@ -290,7 +290,7 @@ const SingleCarPage = () => {
 
             <hr className="text-[#fff] my-[30px]" />
 
-            <div className="w-full flex justify-center items-center gap-[25px]">
+            <div className="w-full flex  justify-center items-center gap-[25px]">
               <div className="text-[#fff] bg-[#5AEC5A] flex justify-center items-center w-[80px] h-[60px] rounded-[15px] text-[35px]">
                 <FaWhatsapp />
               </div>
@@ -302,7 +302,7 @@ const SingleCarPage = () => {
               </div>
             </div>
 
-            <div className="w-[380px] min-h-[170px] border-white border-2 m-auto mt-[50px] p-[25px]">
+            <div className="max-w-[380px] w-full min-h-[170px] border-white border-2 m-auto mt-[50px] p-[25px]">
               <p>
                 {" "}
                 {car.brand.title} {car.model.name} ({car.color})
@@ -388,11 +388,11 @@ const SingleCarPage = () => {
 
         <div className="w-full gap-[35px] ">
           <h1 className="text-[32px] font-[600] my-[25px]">SIMILAR OFFERS</h1>
-          <div className="w-full flex justify-start gap-[20px] ">
+          <div className="w-full grid  mx-auto md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center md:justify-start gap-[20px] ">
             {images.map((item) => (
               <div
                 key={item.id}
-                className="w-[310px] h-[410px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
+                className="max-w-[360px] w-full h-[410px] bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] px-2 rounded-[10px] hover:bg-gradient-to-tl transition-all duration-1000"
               >
                 {/* Bu yerga ma'lumotlar qo'shish mumkin */}
                 <img
