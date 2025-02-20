@@ -24,21 +24,21 @@ const ServicePage = () => {
         <div className='flex flex-wrap gap-6'>
           <div className='p-2 md:w-[360px]'>
             <img src={maped} alt="" className='mx-auto md:mx-0' />
-            <h4 className='text-white text-[24px] my-[25px] font-semibold leading-[100%]'>Ride a buggy in Dubai and have fun</h4>
-            <p className='text-white text-[18px] leading-[100%] mb-[40px]'>Experience the thrill of a dune buggy tour in Dubai with us. We offer free hotel pick-up &amp; drop-off service. Book now</p>
+            <h4 className='text-white text-[26px] my-[25px] font-semibold leading-[100%]'>{translations[language]?.service1Title || translations?.en?.service1Title}</h4>
+            <p className='text-white text-[22px] mb-[40px]'>{translations[language]?.service1Subtitle || translations?.en?.service1Subtitle}</p>
             <a href="/services/uslugbuggies" className=' flex items-center justify-evenly w-[200px] hover:ml-4 transition-all duration-700'>
-              <p className='text-white font-bold'>LEARN MORE</p>
+              <p className='text-white font-bold'>{translations[language]?.serviceLink || translations?.en?.serviceLink}</p>
               <img data-v-0347924f="" src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2010L21%2016.5L13%2023L17.5714%2016.5L13%2010Z'%20fill='white'%3e%3c/path%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20stroke='white'%3e%3c/circle%3e%3c/svg%3e" alt="" />
             </a>
           </div>
           <div className='p-2 md:w-[360px]'>
             <img src={rasm} alt="" className='mx-auto md:mx-0' />
-            <h4 className='text-white text-[24px] my-[25px] font-semibold leading-[100%]'>Photoshoot with luxury car rental Dubai</h4>
-            <p className='text-white text-[18px] leading-[100%] mb-[40px]'>
-              Professional car photoshoot as an additional type of service at Terra Car Rental
+            <h4 className='text-white text-[26px] my-[25px]  font-semibold leading-[100%]'>{translations[language]?.service2Title || translations?.en?.service2Title}</h4>
+            <p className='text-white text-[22px]  mb-[60px]'>
+            {translations[language]?.service2Subtitle || translations?.en?.service2Subtitle}
             </p>
             <a href="/services/uslugcar" className='flex items-center justify-evenly w-[200px] hover:ml-4 transition-all duration-700'>
-              <p className='text-white font-bold'>LEARN MORE</p>
+              <p className='text-white font-bold'>{translations[language]?.serviceLink || translations?.en?.serviceLink}</p>
               <img src="data:image/svg+xml,%3csvg%20width='32'%20height='32'%20viewBox='0%200%2032%2032'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M13%2010L21%2016.5L13%2023L17.5714%2016.5L13%2010Z'%20fill='white'%3e%3c/path%3e%3ccircle%20cx='16'%20cy='16'%20r='15.5'%20stroke='white'%3e%3c/circle%3e%3c/svg%3e" alt="" />
             </a>
           </div>

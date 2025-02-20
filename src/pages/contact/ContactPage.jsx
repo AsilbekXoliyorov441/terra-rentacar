@@ -1,28 +1,39 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { translations } from '../../data';
 
 const ContactPage = () => {
+  const language = useSelector((state) => state.language.language);
   return (
     <section className='contacts relative pb-[30px]'>
-<div className='w-full absolute h-full bg-black opacity-[0.7]'>
+      <div className='w-full absolute h-full bg-black opacity-[0.7]'>
 
-</div>
+      </div>
       <div className='container relative py-14 px-4 text-white  m-auto'>
-        <a href="/" class="text-[14px] text-[#fff9]">
-          <p class="text-center sm:text-left">Luxury Cars for Rent in Dubai   /   Contacts
-          </p>
-        </a>
+        <div className='flex justify-start'>
+
+          <a href="/" class="text-[14px] text-[#fff9]">
+            <p class="text-center sm:text-left">{translations[language]?.breadcrumb1 || translations?.en?.breadcrumb1}/
+            </p>
+          </a>
+          <a href="/contact" className='text-[#fff9] text-[14px] text-center md:text-left'>
+            <p className='text-center sm:text-left'>
+              {translations[language]?.contactUs || translations?.en?.contactUs}
+            </p>
+          </a>
+        </div>
         <h3 data-v-aef46ff5="" class="text-[22px] text-center sm:text-left sm:text-[36px] py-[10px] sm:py-[40px] font-semibold">
-          HAVE ANY QUESTIONS?
+        {translations[language]?.haveany || translations?.en?.haveany}
         </h3>
         <p data-v-aef46ff5="" class="text-[#fff9] text-center sm:text-left mb-[10px] sm:mb-[90px]">
-          We will be glad to help
+        {translations[language]?.weglad || translations?.en?.weglad}
         </p>
-        <h4 data-v-aef46ff5="" class="text-[26px] ml-[45px] font-bold">Head office</h4>
+        <h4 data-v-aef46ff5="" class="text-[26px] ml-[45px] font-bold">{translations[language]?.head || translations?.en?.head}</h4>
         <div className='flex flex-col gap-2 mt-6'>
           <div className='flex items-center gap-7'>
             <img data-v-aef46ff5="" src="data:image/svg+xml,%3csvg%20width='17'%20height='19'%20viewBox='0%200%2017%2019'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M8.22967%200.254944C3.87956%200.254944%200.337891%203.79661%200.337891%208.14673C0.337891%2010.0996%201.05433%2011.8906%202.23105%2013.2677L2.23468%2013.2713L2.23739%2013.2749C2.23739%2013.2749%205.59462%2017.1058%206.78986%2018.2463C7.59024%2019.0094%208.8682%2019.0094%209.66858%2018.2463C11.031%2016.9468%2014.2229%2013.2731%2014.2229%2013.2731L14.2247%2013.2704L14.2274%2013.2677C15.4052%2011.8906%2016.1215%2010.0996%2016.1215%208.14673C16.1215%203.79661%2012.5798%200.254944%208.22967%200.254944ZM8.22967%201.64761C11.8271%201.64761%2014.7288%204.54935%2014.7288%208.14673C14.7288%209.76%2014.1409%2011.2257%2013.1684%2012.3628C13.1621%2012.3701%209.89625%2016.1051%208.7075%2017.239C8.43181%2017.5018%208.02663%2017.5018%207.75094%2017.239C6.75743%2016.2909%203.30014%2012.3742%203.29006%2012.3628L3.28915%2012.3619C2.31795%2011.2249%201.73056%209.75955%201.73056%208.14673C1.73056%204.54935%204.6323%201.64761%208.22967%201.64761ZM8.22967%205.36139C7.35926%205.36139%206.61827%205.71287%206.14249%206.24813C5.6667%206.78339%205.44434%207.46974%205.44434%208.14673C5.44434%208.82372%205.6667%209.51006%206.14249%2010.0453C6.61827%2010.5806%207.35926%2010.9321%208.22967%2010.9321C9.10009%2010.9321%209.84108%2010.5806%2010.3169%2010.0453C10.7926%209.51006%2011.015%208.82372%2011.015%208.14673C11.015%207.46974%2010.7926%206.78339%2010.3169%206.24813C9.84108%205.71287%209.10009%205.36139%208.22967%205.36139ZM8.22967%206.75406C8.75192%206.75406%209.05544%206.92483%209.27599%207.17295C9.49654%207.42106%209.62234%207.77922%209.62234%208.14673C9.62234%208.51424%209.49654%208.87239%209.27599%209.12051C9.05544%209.36862%208.75192%209.53939%208.22967%209.53939C7.70742%209.53939%207.40391%209.36862%207.18336%209.12051C6.96281%208.87239%206.83701%208.51424%206.83701%208.14673C6.83701%207.77922%206.96281%207.42106%207.18336%207.17295C7.40391%206.92483%207.70742%206.75406%208.22967%206.75406Z'%20fill='white'%20fill-opacity='0.6'%3e%3c/path%3e%3c/svg%3e" alt="" />
             <p class="text-[18px] font-semibold">
-              Elite 3 Sports City, Dubai 26W8 24J, United Arab Emirates
+            {translations[language]?.elite || translations?.en?.elite}
             </p>
           </div>
           <a href="tel:+998990000441" className='flex items-center gap-7'>
