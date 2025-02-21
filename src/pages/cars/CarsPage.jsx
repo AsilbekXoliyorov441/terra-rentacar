@@ -20,6 +20,10 @@ const CarsPage = () => {
   const [searchParams] = useSearchParams();
   const language = useSelector((state) => state.language.language);
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Sahifa yuqoriga qaytadi
+  }, []);
+
   // Ma'lumotlarni yuklash
   useEffect(() => {
     const fetchData = async () => {

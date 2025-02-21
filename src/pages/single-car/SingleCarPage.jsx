@@ -102,6 +102,10 @@ const SingleCarPage = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Sahifa yuqoriga qaytadi
+  }, []);
+
   if (!car)
     return (
       <p className="text-white text-center">Mashina ma'lumoti topilmadi!</p>
