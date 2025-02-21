@@ -230,13 +230,6 @@ body {
     }
   }
 }
-<<<<<<< HEAD
-
-.brand-img:hover{
-   transition: 0.4s;
-    filter: drop-shadow(1px 1px 2px white);
-}
-=======
 .contacts{
   background-image: url("../src/assets/contactcover-D0KNkhkW.jpg");
   background-size: cover;
@@ -249,7 +242,6 @@ body {
   object-fit: cover;
 }
 
->>>>>>> e2fadecae475348815a3fea502429a27242a0f80
 
 
 
