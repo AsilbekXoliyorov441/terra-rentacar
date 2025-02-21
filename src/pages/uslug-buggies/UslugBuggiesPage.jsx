@@ -5,6 +5,7 @@ import sport3 from '../../assets/uslug-sport-3-DyPjBdp1.jpg';
 import dowloud from '../../assets/download.png';
 import { useSelector } from 'react-redux';
 import { translations } from '../../data';
+import { Link } from 'react-router-dom';
 
 const UslugBuggiesPage = () => {
   const language = useSelector((state) => state.language.language);
@@ -15,13 +16,13 @@ const UslugBuggiesPage = () => {
       <div className='container  py-[50px] m-auto'>
         <div className='flex justify-start'>
 
-        <a href="/">
+        <Link to="/">
           <p class="text-[#fff9] text-[14px] text-center md:text-left">
             {translations[language]?.breadcrumb1|| translations?.en?.breadcrumb1}/
           </p>
-        </a>
-        <a href="/services" className='text-[#fff9] text-[14px] text-center md:text-left'> {translations[language]?.breadcrumb2||translations?.en?.breadcrumb2}/</a>
-        <a href="uslugcar" className='text-[#fff9] text-[14px] text-center md:text-left'>{translations[language]?.service2Title || translations?.en?.service2Title}</a>
+        </Link>
+        <Link to="/services" className='text-[#fff9] text-[14px] text-center md:text-left'> {translations[language]?.breadcrumb2||translations?.en?.breadcrumb2}/</Link>
+        <Link to="uslugcar" className='text-[#fff9] text-[14px] text-center md:text-left'>{translations[language]?.service2Title || translations?.en?.service2Title}</Link>
         </div>
         <h3 class="text-white text-[32px] text-center md:text-left my-[10px] p768:my-[50px] mx-2 font-semibold">
          {translations[language]?.service1Title || translations?.en?.service1Title}
@@ -63,9 +64,9 @@ const UslugBuggiesPage = () => {
                 <img src={dowloud} alt="" />
                 <p className='text-white text-[18px] font-semibold'>{translations[language]?.fruit || translations?.en.fruit}</p>
               </div>
-              <a href="tel:+998990000441">
+              <Link to="tel:+998990000441">
                 <button className='w-full bg-[#fe363b] mt-[15px] text-white py-3 font-bold text-[26px] rounded-2xl'>{translations[language]?.book || translations?.en.book}</button>
-              </a>
+              </Link>
             </div>
           </div>
             <div className='max-w-[360px] w-full md:max-w-[340px] lg:max-w-[380px] md:w-full h-full bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] rounded-[10px]  transition-all duration-1000'>
@@ -104,9 +105,9 @@ const UslugBuggiesPage = () => {
                   <img src={dowloud} alt="" />
                   <p className='text-white text-[18px] font-semibold'>{translations[language]?.fruit || translations?.en.fruit}</p>
                 </div>
-                <a href="tel:+998990000441">
+                <Link to="tel:+998990000441">
                   <button className='w-full bg-[#fe363b] mt-[15px] text-white py-3 font-bold text-[26px] rounded-2xl'>{translations[language]?.book || translations?.en.book}</button>
-                </a>
+                </Link>
               </div>
             </div>
             <div className='max-w-[360px] w-full md:max-w-[340px] lg:max-w-[380px] md:w-full h-full bg-gradient-to-br from-[#29292944] via-[#29292944] to-[#95979727] border-[#e5e7eb] rounded-[10px]  transition-all duration-1000'>
@@ -145,9 +146,9 @@ const UslugBuggiesPage = () => {
                   <img src={dowloud} alt="" />
                   <p className='text-white text-[18px] font-semibold'>{translations[language]?.fruit || translations?.en.fruit}</p>
                 </div>
-                <a href="tel:+998990000441">
+                <Link to="tel:+998990000441">
                   <button className='w-full bg-[#fe363b] mt-[15px] text-white py-3 font-bold text-[26px] rounded-2xl'>{translations[language]?.book || translations?.en.book}</button>
-                </a>
+                </Link>
               </div>
             </div>
         </div>

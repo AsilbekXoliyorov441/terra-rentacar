@@ -2,6 +2,7 @@ import React from 'react';
 import dc from '../../assets/mm34-DCy6GvLS.png';
 import { useSelector } from 'react-redux';
 import { translations } from '../../data';
+import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
   const language = useSelector((state) => state.language.language);
@@ -11,12 +12,12 @@ const AboutPage = () => {
         <img src={dc} alt="" className='lg:flex w-full h-full absolute opacity-30 top-0' />
         <div className='container m-auto relative text-white text-center sm:text-left py-[25px] sm:py-[50px] px-2'>
           <div className='flex justify-start'>
-            <a href="/">
+            <Link to="/">
               <p class="text-[#fff9] text-[14px] text-center md:text-left">
                 {translations[language]?.breadcrumb1 || translations?.en?.breadcrumb1}/
               </p>
-            </a>
-            <a href="/about" className='text-[#fff9] text-[14px] text-center md:text-left'>{translations[language]?.aboutUs || translations?.en.aboutUs}</a>
+            </Link>
+            <Link to="/about" className='text-[#fff9] text-[14px] text-center md:text-left'>{translations[language]?.aboutUs || translations?.en.aboutUs}</Link>
           </div>
           <h3 class="text-[26px] sm:text-[32px] font-semibold my-[15px] sm:my-[50px]">{translations[language]?.aboutUs || translations?.en.aboutUs}</h3>
           <h4 class="text-[22px] sm:text-[30px]">{translations[language]?.autozoom || translations?.en.autozoom}</h4>
